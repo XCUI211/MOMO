@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bl7c6xngu8rbu"]
 
 [ext_resource type="Script" uid="uid://c7oqwexqv30r2" path="res://src/scripts/Battle.gd" id="1_hillq"]
-[ext_resource type="Texture2D" uid="uid://cbag0fodyjb04" path="res://sprites/Background.png" id="3_v4xhg"]
+[ext_resource type="Texture2D" uid="uid://cgwfprcvtgsla" path="res://sprites/Background_City.jpg" id="2_aml3x"]
 [ext_resource type="Texture2D" uid="uid://cxy4qetlp0kll" path="res://sprites/Batty.png" id="4_aml3x"]
 [ext_resource type="FontFile" uid="uid://k6gsls5d8t5o" path="res://fonts/NES.tres" id="4_ltl1r"]
 
@@ -700,10 +700,13 @@ grow_vertical = 2
 script = ExtResource("1_hillq")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1111231323]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource("3_v4xhg")
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_aml3x")
 expand_mode = 1
 stretch_mode = 4
 
@@ -742,19 +745,25 @@ texture = ExtResource("4_aml3x")
 stretch_mode = 4
 
 [node name="PlayerPanel" type="Panel" parent="." unique_id=1602152828]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_styles/panel = SubResource("3")
 
 [node name="PlayerData" type="HBoxContainer" parent="PlayerPanel" unique_id=680322792]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
 offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="TimeBar" type="ProgressBar" parent="PlayerPanel/PlayerData" unique_id=40194716]
@@ -832,7 +841,7 @@ theme_override_fonts/font = ExtResource("4_ltl1r")
 theme_override_styles/normal = SubResource("4")
 theme_override_styles/pressed = SubResource("5")
 theme_override_styles/hover = SubResource("5")
-text = "Attack(10)"
+text = "Throw toy(10)"
 
 [node name="Defend" type="Button" parent="ActionsPanel/Actions" unique_id=1246736845]
 layout_mode = 2
@@ -846,7 +855,7 @@ theme_override_fonts/font = ExtResource("4_ltl1r")
 theme_override_styles/normal = SubResource("4")
 theme_override_styles/pressed = SubResource("5")
 theme_override_styles/hover = SubResource("5")
-text = "Defend(5)"
+text = "Isolate(5)"
 
 [node name="Run" type="Button" parent="ActionsPanel/Actions" unique_id=262465958]
 layout_mode = 2
@@ -863,8 +872,8 @@ theme_override_styles/hover = SubResource("5")
 text = "Run(10)"
 
 [node name="Textbox" type="Panel" parent="." unique_id=934672624]
-visible = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 10
 anchor_right = 1.0
 offset_left = 8.0
 offset_top = 8.0
@@ -877,15 +886,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
+offset_left = 11.0
 offset_top = 8.0
-offset_right = 52.0
-offset_bottom = -8.0
+offset_right = -12.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = SubResource("8")
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 16
 text = "Momo appears! "
+autowrap_mode = 2
 
 [node name="Ticker" type="Label" parent="Textbox" unique_id=1418960542]
 layout_mode = 0

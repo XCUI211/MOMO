@@ -49,6 +49,13 @@ func display_text(text):
 	$Textbox/Label.text = text
 
 func momo_turn():
+	var turn_prompts = [
+	"Your time is running thin! Take the initiative!",
+	"The stage is yours. What's the plan?",
+	"Momo's waiting... strike now!",
+	"Back to you! Don't hold back!",
+	"No time to waste! Make your move!"
+	]
 	display_text("%s launches at you fiercely!" % State.momo_name)
 	await self.textbox_closed
 	
@@ -59,8 +66,11 @@ func momo_turn():
 		var defend_damage = randi_range(0,State.momo_damage)
 		current_player_health = max(0, current_player_health - defend_damage)
 		if current_player_health > 0:
-			display_text("You defended successfully!")
+			display_text("You isolate Momo successfully!")
 			display_text("%s dealt %d damage!" % [State.momo_name, defend_damage])
+			await self.textbox_closed
+			# Pick a random prompt
+			display_text(turn_prompts.pick_random())
 			await self.textbox_closed
 		else :
 			momo_win("You are defeated!")		
@@ -70,7 +80,9 @@ func momo_turn():
 			set_health($PlayerPanel/PlayerData/ProgressBar, current_player_health, State.max_health)
 			$AnimationPlayer.play("shake")
 			await $AnimationPlayer.animation_finished
-			display_text("%s dealt %d damage!" % [State.momo_name, State.momo_damage])
+			display_text("WHAM! %s hits you for %d damage!" % [State.momo_name, State.momo_damage])
+			await self.textbox_closed
+			display_text(turn_prompts.pick_random())
 			await self.textbox_closed
 		else :
 			momo_win("You are defeated!")	
@@ -83,21 +95,28 @@ func momo_win(text):
 	get_tree().quit()	
 	
 func _on_Run_pressed():
-	current_player_time = current_player_time - run_time
+	current_player_time -= run_time
+	
 	if current_player_time >= 0:
-		set_time($PlayerPanel/PlayerData/TimeBar, current_player_time,State.max_time)
-		display_text("Got away safely!")
+		set_time($PlayerPanel/PlayerData/TimeBar, current_player_time, State.max_time)
+		
+		display_text("You pay with stolen time and vanish into the shadows!")
 		await self.textbox_closed
 		
-		momo_turn()
+		$AnimationPlayer.play("mini_shake")
+		await $AnimationPlayer.animation_finished
+		
+		display_text("Momo stares at empty space, completely baffled. Nice getaway!")
+		await self.textbox_closed	
+		$ActionsPanel.show()
 	else:
-		momo_win("You don't have enough time! You lose!")
+		momo_win("The timeline collapses. You have no more time left to spend...")
 		
 func _on_Attack_pressed():
 	current_player_time = current_player_time - attack_time
 	if current_player_time >= 0:
 		set_time($PlayerPanel/PlayerData/TimeBar, current_player_time,State.max_time)
-		display_text("You swing your piercing sword!")
+		display_text("You throw toy to Momo!")
 		await self.textbox_closed
 		
 		current_momo_health = max(0, current_momo_health - State.greymen_damage)
@@ -129,7 +148,7 @@ func _on_Defend_pressed():
 		set_time($PlayerPanel/PlayerData/TimeBar, current_player_time,State.max_time)
 		is_defending = true
 	
-		display_text("You prepare defensively!")
+		display_text("You successfully isolated and defended against Momo's attack!")
 		await self.textbox_closed
 	
 		await get_tree().create_timer(0.25).timeout
