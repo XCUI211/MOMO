@@ -131,7 +131,7 @@ VAR time = 0
             * * * [Think of all the time you just saved]
                 "Do that every night, and imagine what time you could save," you point out, <>
             - - -
-            <> "now apply this to the rest of your life, and your account with us will be overflowing in no time. No time at all."
+            <> "apply this to the rest of your life, and your account with us will be overflowing in no time. No time at all."
             ~ time = time + 24417
         * * [Then find some other way]
             "Then think of other ways to get them to leave. The method matters not, only the results. Only the time that you will invariably save."
