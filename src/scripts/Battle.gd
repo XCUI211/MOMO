@@ -99,13 +99,15 @@ func momo_turn():
 		display_text("You recruit a greymen successfully!")
 		await self.textbox_closed
 		is_defending = false
+		var defend_damage = randi_range(0, current_momo_damage)
+		
+		current_player_health = max(0, current_player_health - defend_damage)
 		$AnimationPlayer.play("mini_shake")
 		await $AnimationPlayer.animation_finished
-		var defend_damage = randi_range(0, current_momo_damage)
-		current_player_health = max(0, current_player_health - defend_damage)
+		set_health($PlayerPanel/PlayerData/ProgressBar, current_player_health, State.max_health)	
 		display_text("WHAM! The new greymen bears %d damage for you, so you only got %d damage!" % [current_momo_damage - defend_damage, defend_damage])
 		await self.textbox_closed
-		
+	
 		if current_player_health > 0:
 			greymen_turn()
 		else :
@@ -114,21 +116,22 @@ func momo_turn():
 		display_text("You isolate Momo successfully!")
 		await self.textbox_closed
 		is_isolating = false
+		$AnimationPlayer.play("mini_shake")
+		await $AnimationPlayer.animation_finished
 		display_text("Momo tries to attack you but no damage caused!")
 		await self.textbox_closed
 		greymen_turn()				
 	else:
 		current_player_health = max(0, current_player_health - current_momo_damage)
-		if current_player_health > 0:
-			set_health($PlayerPanel/PlayerData/ProgressBar, current_player_health, State.max_health)
-			$AnimationPlayer.play("shake")
-			await $AnimationPlayer.animation_finished
-			display_text("Momo hits you for %d damage!" %current_momo_damage)
-			await self.textbox_closed
+		$AnimationPlayer.play("shake")
+		await $AnimationPlayer.animation_finished
+		set_health($PlayerPanel/PlayerData/ProgressBar, current_player_health, State.max_health)
+		display_text("Momo hits you for %d damage!" %current_momo_damage)
+		await self.textbox_closed
+		if current_player_health > 0:		
 			greymen_turn()
 		else :
 			momo_win("You are defeated!")	
-	$ActionsPanel.show()
 		
 func _on_Attack_pressed():
 	current_player_time = current_player_time - attack_time
@@ -148,12 +151,14 @@ func _on_Attack_pressed():
 	
 		if current_momo_health <= 0:
 			greymen_win("Momo was defeated!")
+			return
 
 		momo_turn()
 	else:
 		current_player_time = current_player_time + attack_time
 		display_text("You don't have enough time to take this action!")
-		await self.textbox_closed	
+		await self.textbox_closed
+		$ActionsPanel.show()	
 
 func _on_Defend_pressed():
 	current_player_time = current_player_time - defend_time
@@ -174,6 +179,7 @@ func _on_Isolate_pressed():
 		current_player_time = current_player_time + isolate_time
 		display_text("The timeline collapses. You have no more time left to spend...")
 		await self.textbox_closed
+		$ActionsPanel.show()
 
 func _on_Attack_mouse_entered() -> void:
 	$Actionbox.show()

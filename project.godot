@@ -11,18 +11,19 @@ config_version=5
 [application]
 
 config/name="Momo"
-run/main_scene="res://src/scenes/Battle.tscn"
+run/main_scene="uid://5ru4wj8ck706"
 config/features=PackedStringArray("4.4")
 config/icon="res://icon.png"
 
 [autoload]
 
 State="*res://src/scripts/State.gd"
+AudioManager="*res://src/scenes/AudioManager.tscn"
 
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=240
+window/size/viewport_width=800
+window/size/viewport_height=600
 window/size/window_width_override=960
 window/size/window_height_override=720
 window/stretch/mode="viewport"
@@ -30,3 +31,7 @@ window/stretch/mode="viewport"
 [physics]
 
 common/enable_pause_aware_picking=true
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

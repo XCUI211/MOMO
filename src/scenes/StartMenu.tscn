@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://5ru4wj8ck706"]
+
+[ext_resource type="Script" uid="uid://cib43cuj8s6j4" path="res://src/scripts/start_menu.gd" id="1_aefqy"]
+[ext_resource type="Texture2D" uid="uid://cjygj3irlq2ud" path="res://sprites/Background_town.png" id="4_auo2m"]
+[ext_resource type="FontFile" uid="uid://k6gsls5d8t5o" path="res://fonts/NES.tres" id="5_v80os"]
+[ext_resource type="Texture2D" uid="uid://br2ui2f8efol5" path="res://sprites/Momo_2.png" id="6_sdiym"]
+
+[sub_resource type="StyleBoxFlat" id="5"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aefqy")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_right = 30.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.964349, 1.0491)
+texture = ExtResource("4_auo2m")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Momo" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 349.0
+offset_top = 412.0
+offset_right = 478.0
+offset_bottom = 560.0
+scale = Vector2(1.30608, 1.29336)
+size_flags_horizontal = 4
+texture = ExtResource("6_sdiym")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 55.0
+offset_top = -36.0
+offset_right = 215.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_v80os")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/hover = SubResource("5")
+theme_override_styles/pressed = SubResource("5")
+theme_override_styles/normal = SubResource("4")
+text = "Start Now!"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = -36.0
+offset_right = -39.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_v80os")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/hover = SubResource("5")
+theme_override_styles/pressed = SubResource("5")
+theme_override_styles/normal = SubResource("4")
+text = "Exit"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
