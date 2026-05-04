@@ -203,7 +203,7 @@ You adjust your grey bowler hat and check the time-savings jar in your hand.
     [Barely Acceptable] At least you didn't take a loss. Stealing time from Beppo is harder than climbing to heaven; taking whatever you can get is good enough. Hurry up and find your next victim.
 }
 { stolen_time <= 0:
-    [Absolute Disgrace] You are a disgrace to all Men in Grey! Not only did you fail to steal time from Beppo, but he actually drained your life force! If you keep this up, you'll fade into nothingness before you even lay eyes on Momo.
+    [Absolute Disgrace] You are a disgrace to all Grey Men! Not only did you fail to steal time from Beppo, but he actually drained your life force! If you keep this up, you'll fade into nothingness before you even lay eyes on Momo.
 }
 --------------------------------------------------
 You turn and vanish into the gray mist of the city, preparing for your next target: the Barber.

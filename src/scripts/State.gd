@@ -1,9 +1,9 @@
 extends Node
 
 #MOMO Data
-var momo_name: String = "Momo"
 var momo_health: int = 100
-var momo_damage: int = 20
+var momo_min_damage: int = 10
+var momo_max_damage: int = 40
 
 #Greymen Data
 var current_health = 100
