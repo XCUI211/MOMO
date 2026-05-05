@@ -14,6 +14,8 @@ var defend_time = 5
 var isolate_time = 10
 
 func _ready():
+	AudioManager.bgm.stop()
+	AudioManager.battle.play()
 	set_health($MomoContainer/ProgressBar, State.momo_health, State.momo_health)
 	set_time($PlayerPanel/PlayerData/TimeBar, State.stolen_time,State.stolen_time)
 	set_health($PlayerPanel/PlayerData/ProgressBar, State.current_health, State.max_health)
@@ -25,8 +27,6 @@ func _ready():
 	$Textbox.hide()
 	$ActionsPanel.hide()
 	$Actionbox.hide()
-	$GreymenWin.hide()
-	$MomoWin.hide()
 	
 	display_text("Momo appears! Defeat her with your stolen time!")
 	await self.textbox_closed
@@ -53,24 +53,13 @@ func display_text(text):
 	$Textbox.show()
 	$Textbox/Label.text = text
 
-func momo_win(text):
-	$MomoWin.show()
-	display_text(text)
-	await self.textbox_closed
-	
-	#$AnimationPlayer.play("momo_lose")
-	#await $AnimationPlayer.animation_finished
+func momo_win():
+	get_tree().change_scene_to_file("res://src/scenes/MomoWin.tscn")
 
 
-func greymen_win(text):
-	$GreymenWin.show()
-	display_text(text)
-	await self.textbox_closed
-	
-	#$AnimationPlayer.play("momo_lose")
-	#await $AnimationPlayer.animation_finished
-	#await get_tree().create_timer(0.25).timeout
-	#get_tree().quit()		
+func greymen_win():
+	get_tree().change_scene_to_file("res://src/scenes/GreymenWin.tscn")	
+		
 
 func greymen_turn():
 	var turn_prompts = [
@@ -84,6 +73,11 @@ func greymen_turn():
 	display_text("Momo is going to give %d damage to you next round!" %current_momo_damage )
 	await self.textbox_closed
 	
+	$MomoContainer/Damage.text = "Damage: %d" %current_momo_damage
+	
+	var tween = create_tween()
+	tween.tween_property($MomoContainer/Damage, "scale", Vector2(1.2, 1.2), 0.2)
+	tween.tween_property($MomoContainer/Damage, "scale", Vector2(1.0, 1.0), 0.2)
 	# Pick a random prompt
 	display_text(turn_prompts.pick_random())
 	await self.textbox_closed
@@ -109,7 +103,7 @@ func momo_turn():
 		if current_player_health > 0:
 			greymen_turn()
 		else :
-			momo_win("You are defeated!")
+			momo_win()
 	elif is_isolating:
 		display_text("You isolate Momo successfully!")
 		await self.textbox_closed
@@ -129,7 +123,7 @@ func momo_turn():
 		if current_player_health > 0:		
 			greymen_turn()
 		else :
-			momo_win("You are defeated!")	
+			momo_win()	
 		
 func _on_Attack_pressed():
 	current_player_time = current_player_time - attack_time
@@ -149,7 +143,7 @@ func _on_Attack_pressed():
 		await self.textbox_closed
 	
 		if current_momo_health <= 0:
-			greymen_win("Momo was defeated!")
+			greymen_win()
 			return
 
 		momo_turn()
@@ -166,7 +160,7 @@ func _on_Defend_pressed():
 		is_defending = true
 		momo_turn()	
 	else:
-		momo_win("You don't have enough time! You lose!")	
+		momo_win()	
 	
 func _on_Isolate_pressed():
 	current_player_time = current_player_time - isolate_time

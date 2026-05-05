@@ -11,6 +11,7 @@ extends Node
 
 # ===== BGM=====
 @onready var bgm: AudioStreamPlayer2D = $BGM
+@onready var battle: AudioStreamPlayer2D = $battle
 
 func _ready() -> void:
 	bgm.play()

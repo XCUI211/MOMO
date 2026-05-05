@@ -1,26 +1,34 @@
-[gd_scene load_steps=30 format=4 uid="uid://bl7c6xngu8rbu"]
+[gd_scene load_steps=27 format=4 uid="uid://bxnwfa85cxi6h"]
 
-[ext_resource type="Script" uid="uid://c7oqwexqv30r2" path="res://src/scripts/Battle.gd" id="1_hillq"]
-[ext_resource type="Texture2D" uid="uid://bg3awimuqf0qa" path="res://sprites/Momo_background.png" id="2_aml3x"]
-[ext_resource type="Texture2D" uid="uid://br2ui2f8efol5" path="res://sprites/Momo_2.png" id="4_aml3x"]
-[ext_resource type="FontFile" uid="uid://k6gsls5d8t5o" path="res://fonts/NES.tres" id="4_ltl1r"]
-[ext_resource type="FontFile" uid="uid://dxn7kr8jpn6tb" path="res://fonts/Adventurer.ttf" id="5_hillq"]
-
-[sub_resource type="StyleBoxFlat" id="3"]
-bg_color = Color(0, 0, 0, 0.509804)
+[ext_resource type="Script" uid="uid://bg2pxc71jgsar" path="res://src/scripts/ending.gd" id="1_c8y15"]
+[ext_resource type="Texture2D" uid="uid://cjygj3irlq2ud" path="res://sprites/Background_town.png" id="2_x720o"]
+[ext_resource type="Texture2D" uid="uid://br2ui2f8efol5" path="res://sprites/Momo_2.png" id="4_bwi2f"]
+[ext_resource type="Texture2D" uid="uid://bgad5nggv5tys" path="res://sprites/Baker.png" id="5_j8pur"]
+[ext_resource type="Texture2D" uid="uid://c8odxs1r5wttw" path="res://sprites/Barber.png" id="6_jcv8m"]
+[ext_resource type="Texture2D" uid="uid://dim3k5tqdesj5" path="res://sprites/Beppo.png" id="7_fj0g7"]
+[ext_resource type="Texture2D" uid="uid://8fbaqfrpu2pf" path="res://sprites/Nino.png" id="8_rrgec"]
+[ext_resource type="FontFile" uid="uid://ca854dweeuj0i" path="res://fonts/Star Choco.ttf" id="9_sy0mf"]
 
 [sub_resource type="StyleBoxFlat" id="5"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.384314, 0.611765, 0.258824, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="4"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.584314, 0.807843, 0.537255, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8y15"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 1
 border_width_top = 1
@@ -2025,7 +2033,7 @@ cache/0/25/0/glyphs/17/size = Vector2(6, 6)
 cache/0/25/0/glyphs/17/uv_rect = Rect2(223, 1, 6, 6)
 cache/0/25/0/glyphs/17/texture_idx = 0
 
-[sub_resource type="FontFile" id="8"]
+[sub_resource type="FontFile" id="FontFile_5l421"]
 fallbacks = Array[Font]([SubResource("7")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
@@ -2096,379 +2104,174 @@ cache/0/25/0/underline_position = 0.0
 cache/0/25/0/underline_thickness = 0.0
 cache/0/25/0/scale = 1.0
 
-[sub_resource type="Animation" id="Animation_hillq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MomoContainer/Momo:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_5pmhh"]
-resource_name = "mini_shake"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.233333, 0.3, 0.366667, 0.466667, 0.566667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-8, -10), Vector2(7, 7), Vector2(-6, 6), Vector2(6, -6), Vector2(-8, -7), Vector2(-8, -10), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_aml3x"]
-resource_name = "momo_damaged"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MomoContainer/Momo:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_v4xhg"]
-resource_name = "shake"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.5, 0.566667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-18, -18), Vector2(18, -18), Vector2(-18, 15), Vector2(16, 16), Vector2(-16, 16), Vector2(16, -16), Vector2(-16, 16), Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5pmhh"]
-_data = {
-&"RESET": SubResource("Animation_hillq"),
-&"mini_shake": SubResource("Animation_5pmhh"),
-&"momo_damaged": SubResource("Animation_aml3x"),
-&"shake": SubResource("Animation_v4xhg")
-}
-
-[node name="Battle" type="Control"]
+[node name="MomoWin" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hillq")
+script = ExtResource("1_c8y15")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -11.0
-offset_top = -17.0
-offset_right = 78.0
-offset_bottom = 47.0
+offset_top = 2.0
+offset_right = 30.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.1025, 0.962147)
-texture = ExtResource("2_aml3x")
+scale = Vector2(0.964349, 1.0491)
+texture = ExtResource("2_x720o")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="MomoContainer" type="VBoxContainer" parent="."]
+[node name="Momo" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 617.0
+offset_top = 139.0
+offset_right = 737.0
+offset_bottom = 274.0
+scale = Vector2(1.2129, 1.28505)
+size_flags_horizontal = 4
+texture = ExtResource("4_bwi2f")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Baker" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 388.0
+offset_top = 432.0
+offset_right = 517.0
+offset_bottom = 580.0
+scale = Vector2(1.30608, 1.29336)
+size_flags_horizontal = 4
+texture = ExtResource("5_j8pur")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Barber" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 516.0
+offset_top = 432.0
+offset_right = 645.0
+offset_bottom = 580.0
+scale = Vector2(1.30608, 1.29336)
+size_flags_horizontal = 4
+texture = ExtResource("6_jcv8m")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Beppo" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 149.0
+offset_top = 427.0
+offset_right = 281.0
+offset_bottom = 577.0
+scale = Vector2(1.30608, 1.29336)
+size_flags_horizontal = 4
+texture = ExtResource("7_fj0g7")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Nino" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 266.0
+offset_top = 419.0
+offset_right = 405.0
+offset_bottom = 572.0
+scale = Vector2(1.30608, 1.29336)
+size_flags_horizontal = 4
+texture = ExtResource("8_rrgec")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Start" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -146.0
-offset_top = -175.0
-offset_right = -2.0
-offset_bottom = -55.0
+offset_left = -376.0
+offset_top = -181.0
+offset_right = -198.0
+offset_bottom = -121.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.09636, 2.29575)
-
-[node name="ProgressBar" type="ProgressBar" parent="MomoContainer"]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-step = 1.0
-value = 50.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="MomoContainer/ProgressBar"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_ltl1r")
-text = "HP: 25/50"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Momo" type="TextureRect" parent="MomoContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("4_aml3x")
-expand_mode = 4
-stretch_mode = 4
-
-[node name="Damage" type="Label" parent="MomoContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_hillq")
-horizontal_alignment = 1
-
-[node name="PlayerPanel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -44.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.999988, 1.375)
-theme_override_styles/panel = SubResource("3")
-
-[node name="PlayerData" type="HBoxContainer" parent="PlayerPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_right = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="TimeBar" type="ProgressBar" parent="PlayerPanel/PlayerData"]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-step = 1.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="PlayerPanel/PlayerData/TimeBar"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_ltl1r")
-text = "Cigar: 25/50"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="PlayerPanel/PlayerData"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("4_ltl1r")
-text = "Greymen"
-horizontal_alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="PlayerPanel/PlayerData"]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-step = 1.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="PlayerPanel/PlayerData/ProgressBar"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_ltl1r")
-text = "HP: 25/50"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ActionsPanel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-scale = Vector2(1.00298, 1.74205)
-theme_override_styles/panel = SubResource("3")
-
-[node name="Actions" type="HBoxContainer" parent="ActionsPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 6.97923
-offset_top = 5.16633
-offset_right = -5.02075
-offset_bottom = 19.1663
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.99431, 1.76486)
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="Attack" type="Button" parent="ActionsPanel/Actions"]
-layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.909804, 0.972549, 0.976471, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_ltl1r")
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_sy0mf")
+theme_override_font_sizes/font_size = 28
 theme_override_styles/hover = SubResource("5")
 theme_override_styles/pressed = SubResource("5")
 theme_override_styles/normal = SubResource("4")
-text = "Throw toy(10)"
+text = "Restart!"
 
-[node name="Defend" type="Button" parent="ActionsPanel/Actions"]
-layout_mode = 2
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -376.0
+offset_top = -268.0
+offset_right = -198.0
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.909804, 0.972549, 0.976471, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_ltl1r")
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_sy0mf")
+theme_override_font_sizes/font_size = 28
 theme_override_styles/hover = SubResource("5")
 theme_override_styles/pressed = SubResource("5")
 theme_override_styles/normal = SubResource("4")
-text = "Recruit(5)"
-
-[node name="Isolate" type="Button" parent="ActionsPanel/Actions"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-mouse_default_cursor_shape = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_ltl1r")
-theme_override_styles/hover = SubResource("5")
-theme_override_styles/pressed = SubResource("5")
-theme_override_styles/normal = SubResource("4")
-text = "Isolate(10)"
-
-[node name="Actionbox" type="Panel" parent="."]
-layout_mode = 2
-anchor_right = 1.0
-offset_left = 12.0
-offset_top = 58.0
-offset_right = -4.0
-offset_bottom = 114.0
-grow_horizontal = 2
-scale = Vector2(0.986415, 1.23575)
-theme_override_styles/panel = SubResource("6")
-
-[node name="Attack" type="Label" parent="Actionbox"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = 7.0
-offset_right = -12.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = SubResource("8")
-theme_override_font_sizes/font_size = 24
-text = "Cost 10 cigars to cause 20 damage to  Momo."
-autowrap_mode = 2
-
-[node name="Defend" type="Label" parent="Actionbox"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = 7.0
-offset_right = -12.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = SubResource("8")
-theme_override_font_sizes/font_size = 24
-text = "Cost 5 cigars to recruit a greymen to bear random damage from momo next round."
-autowrap_mode = 2
-
-[node name="Isolate" type="Label" parent="Actionbox"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = 7.0
-offset_right = -12.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = SubResource("8")
-theme_override_font_sizes/font_size = 24
-text = "Cost 10 cigars to Isolate momo, she cannot cause any damage to you next round!"
-autowrap_mode = 2
+text = "Exit"
 
 [node name="Textbox" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 64.0
+offset_left = 89.0
+offset_top = 202.0
+offset_right = 73.0
+offset_bottom = 258.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("6")
+scale = Vector2(0.671613, 2.2274)
+theme_override_styles/panel = SubResource("StyleBoxFlat_c8y15")
 
 [node name="Label" type="Label" parent="Textbox"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = 8.0
-offset_right = -12.0
-offset_bottom = -7.0
+offset_left = 18.9824
+offset_top = 7.24467
+offset_right = -267.018
+offset_bottom = 46.2447
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = SubResource("8")
+scale = Vector2(1.47771, 0.429323)
+theme_override_fonts/font = SubResource("FontFile_5l421")
 theme_override_font_sizes/font_size = 24
-text = "Momo appears! "
+text = "You lost! Momo ruined your big plans. No worries though, we’ll just have another agent replace you. (Try again)"
 autowrap_mode = 2
 
 [node name="Ticker" type="Label" parent="Textbox"]
@@ -2481,23 +2284,8 @@ offset_left = -11.0
 offset_top = -19.0
 offset_right = -4.0
 offset_bottom = -3.0
-theme_override_fonts/font = SubResource("8")
+theme_override_fonts/font = SubResource("FontFile_5l421")
 text = ">"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_5pmhh")
-}
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-
-[connection signal="mouse_entered" from="ActionsPanel/Actions/Attack" to="." method="_on_Attack_mouse_entered"]
-[connection signal="mouse_exited" from="ActionsPanel/Actions/Attack" to="." method="_on_Attack_mouse_exited"]
-[connection signal="pressed" from="ActionsPanel/Actions/Attack" to="." method="_on_Attack_pressed"]
-[connection signal="mouse_entered" from="ActionsPanel/Actions/Defend" to="." method="_on_Defend_mouse_entered"]
-[connection signal="mouse_exited" from="ActionsPanel/Actions/Defend" to="." method="_on_Defend_mouse_exited"]
-[connection signal="pressed" from="ActionsPanel/Actions/Defend" to="." method="_on_Defend_pressed"]
-[connection signal="mouse_entered" from="ActionsPanel/Actions/Isolate" to="." method="_on_Isolate_mouse_entered"]
-[connection signal="mouse_exited" from="ActionsPanel/Actions/Isolate" to="." method="_on_Isolate_mouse_exited"]
-[connection signal="pressed" from="ActionsPanel/Actions/Isolate" to="." method="_on_Isolate_pressed"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
