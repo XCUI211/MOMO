@@ -1,20 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://5ru4wj8ck706"]
+[gd_scene load_steps=12 format=3 uid="uid://5ru4wj8ck706"]
 
 [ext_resource type="Script" uid="uid://cib43cuj8s6j4" path="res://src/scripts/start_menu.gd" id="1_aefqy"]
+[ext_resource type="Texture2D" uid="uid://rf67ecul0dbs" path="res://sprites/Momo_1.png" id="3_auo2m"]
+[ext_resource type="Texture2D" uid="uid://bgad5nggv5tys" path="res://sprites/Baker.png" id="4_7jctj"]
 [ext_resource type="Texture2D" uid="uid://cjygj3irlq2ud" path="res://sprites/Background_town.png" id="4_auo2m"]
-[ext_resource type="FontFile" uid="uid://k6gsls5d8t5o" path="res://fonts/NES.tres" id="5_v80os"]
+[ext_resource type="Texture2D" uid="uid://c8odxs1r5wttw" path="res://sprites/Barber.png" id="5_auo2m"]
 [ext_resource type="Texture2D" uid="uid://br2ui2f8efol5" path="res://sprites/Momo_2.png" id="6_sdiym"]
+[ext_resource type="Texture2D" uid="uid://dim3k5tqdesj5" path="res://sprites/Beppo.png" id="6_v80os"]
+[ext_resource type="Texture2D" uid="uid://8fbaqfrpu2pf" path="res://sprites/Nino.png" id="7_sdiym"]
+[ext_resource type="FontFile" uid="uid://ca854dweeuj0i" path="res://fonts/Star Choco.ttf" id="9_v80os"]
 
 [sub_resource type="StyleBoxFlat" id="5"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.384314, 0.611765, 0.258824, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="4"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.584314, 0.807843, 0.537255, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -43,13 +56,78 @@ stretch_mode = 4
 [node name="Momo" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-offset_left = 349.0
-offset_top = 412.0
-offset_right = 478.0
-offset_bottom = 560.0
-scale = Vector2(1.30608, 1.29336)
+offset_left = 56.0001
+offset_top = 241.0
+offset_right = 176.0
+offset_bottom = 376.0
+scale = Vector2(1.22098, 1.2585)
+size_flags_horizontal = 4
+texture = ExtResource("3_auo2m")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Momo2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 633.0
+offset_top = 236.0
+offset_right = 753.0
+offset_bottom = 371.0
+scale = Vector2(1.22098, 1.2585)
 size_flags_horizontal = 4
 texture = ExtResource("6_sdiym")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Baker" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 388.0
+offset_top = 432.0
+offset_right = 517.0
+offset_bottom = 580.0
+scale = Vector2(1.30608, 1.29336)
+size_flags_horizontal = 4
+texture = ExtResource("4_7jctj")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Barber" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 516.0
+offset_top = 432.0
+offset_right = 645.0
+offset_bottom = 580.0
+scale = Vector2(1.30608, 1.29336)
+size_flags_horizontal = 4
+texture = ExtResource("5_auo2m")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Beppo" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 149.0
+offset_top = 427.0
+offset_right = 281.0
+offset_bottom = 577.0
+scale = Vector2(1.30608, 1.29336)
+size_flags_horizontal = 4
+texture = ExtResource("6_v80os")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Nino" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 266.0
+offset_top = 419.0
+offset_right = 405.0
+offset_bottom = 572.0
+scale = Vector2(1.30608, 1.29336)
+size_flags_horizontal = 4
+texture = ExtResource("7_sdiym")
 expand_mode = 4
 stretch_mode = 4
 
@@ -60,19 +138,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 55.0
-offset_top = -36.0
-offset_right = 215.0
-offset_bottom = -12.0
+offset_left = 46.0
+offset_top = -106.0
+offset_right = 224.0
+offset_bottom = -46.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.909804, 0.972549, 0.976471, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_v80os")
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_v80os")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/hover = SubResource("5")
 theme_override_styles/pressed = SubResource("5")
@@ -86,19 +164,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -199.0
-offset_top = -36.0
-offset_right = -39.0
-offset_bottom = -12.0
+offset_left = -191.0
+offset_top = -106.0
+offset_right = -13.0
+offset_bottom = -46.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.909804, 0.972549, 0.976471, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_v80os")
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_v80os")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/hover = SubResource("5")
 theme_override_styles/pressed = SubResource("5")

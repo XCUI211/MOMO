@@ -61,8 +61,7 @@ func momo_win(text):
 	
 	#$AnimationPlayer.play("momo_lose")
 	#await $AnimationPlayer.animation_finished
-	#await get_tree().create_timer(0.25).timeout
-	#get_tree().quit()	
+
 
 func greymen_win(text):
 	$GreymenWin.show()
@@ -143,6 +142,7 @@ func _on_Attack_pressed():
 		current_momo_health = max(0, current_momo_health - State.greymen_damage)
 		set_health($MomoContainer/ProgressBar, current_momo_health, State.momo_health)
 		
+		AudioManager.hurt_sfx.play()
 		$AnimationPlayer.play("momo_damaged")
 		await $AnimationPlayer.animation_finished
 	
@@ -172,6 +172,7 @@ func _on_Defend_pressed():
 func _on_Isolate_pressed():
 	current_player_time = current_player_time - isolate_time
 	if current_player_time >= 0:
+		AudioManager.isolate_sfx.play()
 		set_time($PlayerPanel/PlayerData/TimeBar, current_player_time, State.max_time)
 		is_isolating = true		
 		momo_turn()

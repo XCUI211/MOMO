@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dxn7kr8jpn6tb"
-path="res://.godot/imported/Adventurer.ttf-7c7fa030670c8a6c450b1bb1a4405236.fontdata"
+uid="uid://ca854dweeuj0i"
+path="res://.godot/imported/Star Choco.ttf-27a029b75e0cd94f9263682965cf786e.fontdata"
 
 [deps]
 
-source_file="res://fonts/Adventurer.ttf"
-dest_files=["res://.godot/imported/Adventurer.ttf-7c7fa030670c8a6c450b1bb1a4405236.fontdata"]
+source_file="res://fonts/Star Choco.ttf"
+dest_files=["res://.godot/imported/Star Choco.ttf-27a029b75e0cd94f9263682965cf786e.fontdata"]
 
 [params]
 
