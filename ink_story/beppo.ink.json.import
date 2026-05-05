@@ -1,0 +1,14 @@
+[remap]
+
+importer="inkgd.ink.json"
+type="Resource"
+path="res://.import/beppo.ink.json-c071a69641eea19859dada12fce94bab.res"
+
+[deps]
+
+source_file="res://ink_story/beppo.ink.json"
+dest_files=[ "res://.import/beppo.ink.json-c071a69641eea19859dada12fce94bab.res" ]
+
+[params]
+
+compress=true

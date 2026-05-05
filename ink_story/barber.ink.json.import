@@ -1,0 +1,14 @@
+[remap]
+
+importer="inkgd.ink.json"
+type="Resource"
+path="res://.import/barber.ink.json-de833be7816a72f7aeb17f93141f6971.res"
+
+[deps]
+
+source_file="res://ink_story/barber.ink.json"
+dest_files=[ "res://.import/barber.ink.json-de833be7816a72f7aeb17f93141f6971.res" ]
+
+[params]
+
+compress=true

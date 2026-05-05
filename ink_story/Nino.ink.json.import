@@ -1,0 +1,14 @@
+[remap]
+
+importer="inkgd.ink.json"
+type="Resource"
+path="res://.import/Nino.ink.json-3f6bc766946490254722b8ffce8a15c4.res"
+
+[deps]
+
+source_file="res://ink_story/Nino.ink.json"
+dest_files=[ "res://.import/Nino.ink.json-3f6bc766946490254722b8ffce8a15c4.res" ]
+
+[params]
+
+compress=true

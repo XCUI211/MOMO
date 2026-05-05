@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/NPC.gd" type="Script" id=1]
+[ext_resource path="res://scripts/Mainscene.gd" type="Script" id=2]
+[ext_resource path="res://scenes/DialogueBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://materials/IMG_2949.png" type="Texture" id=4]
+[ext_resource path="res://materials/IMG_2947.png" type="Texture" id=5]
+[ext_resource path="res://materials/WhatsApp Image 2026-05-01 at 00.42.20.jpeg" type="Texture" id=6]
+[ext_resource path="res://materials/IMG_2948.png" type="Texture" id=7]
+[ext_resource path="res://materials/IMG_2950.png" type="Texture" id=8]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 53.0
+
+[node name="Mainscene" type="Node2D"]
+position = Vector2( 72, 103 )
+script = ExtResource( 2 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 439, 198 )
+scale = Vector2( 1.22216, 1.04355 )
+texture = ExtResource( 6 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="ValueLabel" type="Label" parent="HUD"]
+margin_left = 70.0
+margin_top = 62.0
+margin_right = 156.0
+margin_bottom = 84.0
+text = "Stolen_time: 0"
+
+[node name="AllTalkedHint" type="Label" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="DialogueLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" parent="DialogueLayer" instance=ExtResource( 3 )]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1.0
+margin_bottom = 1.0
+
+[node name="NPC_A" type="Area2D" parent="."]
+position = Vector2( 165, 249 )
+script = ExtResource( 1 )
+npc_id = "npc_a"
+ink_knot_name = "beppo_encounter"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_A"]
+position = Vector2( -96, -32 )
+shape = SubResource( 1 )
+
+[node name="InteractHint" type="Label" parent="NPC_A"]
+margin_left = -144.0
+margin_top = 37.0
+margin_right = -46.0
+margin_bottom = 65.0
+text = "Talk to Beppo"
+
+[node name="Sprite" type="Sprite" parent="NPC_A"]
+position = Vector2( -98, -61 )
+scale = Vector2( 1.73315, 1.80556 )
+texture = ExtResource( 5 )
+
+[node name="NPC_B" type="Area2D" parent="."]
+position = Vector2( 277, 207 )
+script = ExtResource( 1 )
+npc_id = "npc_b"
+ink_knot_name = "Bar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_B"]
+position = Vector2( 26, 16 )
+shape = SubResource( 1 )
+
+[node name="InteractHint" type="Label" parent="NPC_B"]
+margin_left = -13.0
+margin_top = 81.0
+margin_right = 80.0
+margin_bottom = 108.0
+text = "Talk to Nino"
+
+[node name="Sprite" type="Sprite" parent="NPC_B"]
+position = Vector2( 30, -12 )
+scale = Vector2( 2.05758, 1.81389 )
+texture = ExtResource( 7 )
+
+[node name="NPC_C" type="Area2D" parent="."]
+position = Vector2( 503, 206 )
+script = ExtResource( 1 )
+npc_id = "npc_c"
+ink_knot_name = "baker_encounter"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_C"]
+position = Vector2( 20, -9 )
+shape = SubResource( 1 )
+
+[node name="InteractHint" type="Label" parent="NPC_C"]
+margin_left = -18.0
+margin_top = 80.0
+margin_right = 75.0
+margin_bottom = 107.0
+text = "Talk to Baker"
+
+[node name="Sprite" type="Sprite" parent="NPC_C"]
+position = Vector2( 21, -7 )
+scale = Vector2( 1.93118, 1.79444 )
+texture = ExtResource( 4 )
+
+[node name="NPC_D" type="Area2D" parent="."]
+position = Vector2( 720, 209 )
+script = ExtResource( 1 )
+npc_id = "npc_d"
+ink_knot_name = "barber"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_D"]
+position = Vector2( 28, -10 )
+shape = SubResource( 1 )
+
+[node name="InteractHint" type="Label" parent="NPC_D"]
+margin_left = -11.0
+margin_top = 73.0
+margin_right = 82.0
+margin_bottom = 100.0
+text = "Talk to Barber"
+
+[node name="Sprite" type="Sprite" parent="NPC_D"]
+position = Vector2( 22, -16 )
+scale = Vector2( 1.73455, 1.775 )
+texture = ExtResource( 8 )
