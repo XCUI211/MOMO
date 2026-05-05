@@ -15,12 +15,11 @@ var isolate_time = 10
 
 func _ready():
 	set_health($MomoContainer/ProgressBar, State.momo_health, State.momo_health)
-	set_time($PlayerPanel/PlayerData/TimeBar, State.current_time,State.max_time)
+	set_time($PlayerPanel/PlayerData/TimeBar, State.stolen_time,State.stolen_time)
 	set_health($PlayerPanel/PlayerData/ProgressBar, State.current_health, State.max_health)
 
-	
 	current_player_health = State.current_health
-	current_player_time = State.current_time
+	current_player_time = State.stolen_time
 	current_momo_health = State.momo_health
 	
 	$Textbox.hide()
@@ -135,7 +134,7 @@ func momo_turn():
 func _on_Attack_pressed():
 	current_player_time = current_player_time - attack_time
 	if current_player_time >= 0:
-		set_time($PlayerPanel/PlayerData/TimeBar, current_player_time,State.max_time)
+		set_time($PlayerPanel/PlayerData/TimeBar, current_player_time,State.stolen_time)
 		display_text("You throw toy to Momo!")
 		await self.textbox_closed
 		
@@ -163,7 +162,7 @@ func _on_Attack_pressed():
 func _on_Defend_pressed():
 	current_player_time = current_player_time - defend_time
 	if current_player_time >= 0:
-		set_time($PlayerPanel/PlayerData/TimeBar, current_player_time,State.max_time)
+		set_time($PlayerPanel/PlayerData/TimeBar, current_player_time,State.stolen_time)
 		is_defending = true
 		momo_turn()	
 	else:
@@ -173,7 +172,7 @@ func _on_Isolate_pressed():
 	current_player_time = current_player_time - isolate_time
 	if current_player_time >= 0:
 		AudioManager.isolate_sfx.play()
-		set_time($PlayerPanel/PlayerData/TimeBar, current_player_time, State.max_time)
+		set_time($PlayerPanel/PlayerData/TimeBar, current_player_time, State.stolen_time)
 		is_isolating = true		
 		momo_turn()
 	else:

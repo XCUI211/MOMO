@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://jpdb6nrgmqca"]
+[gd_scene load_steps=7 format=3 uid="uid://jpdb6nrgmqca"]
 
-[ext_resource type="Texture2D" uid="uid://uf1gn3n6jji7" path="res://sprites/scroll.png" id="1_mqs24"]
 [ext_resource type="Script" uid="uid://dlfn7pijo6nku" path="res://src/scripts/intro_scroll.gd" id="1_vtdxg"]
+[ext_resource type="Texture2D" uid="uid://cxbnixbatrs8e" path="res://sprites/Background_town_faded.png" id="2_t63xk"]
+[ext_resource type="FontFile" uid="uid://cnpr2j52ladek" path="res://fonts/IMFellEnglishSC-Regular.ttf" id="3_sacoc"]
 
 [sub_resource type="Animation" id="Animation_vtdxg"]
 length = 0.001
@@ -179,6 +180,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 440.0
+scale = Vector2(1.24997, 1.36492)
+texture = ExtResource("2_t63xk")
+
 [node name="Scroll" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(700, 900)
 layout_mode = 1
@@ -195,7 +203,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.05, 0.05)
 pivot_offset = Vector2(350, 450)
-texture = ExtResource("1_mqs24")
 stretch_mode = 5
 
 [node name="Padding" type="MarginContainer" parent="Scroll"]
@@ -203,17 +210,17 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 73.9131
-offset_top = -0.929073
-offset_right = -393.087
-offset_bottom = -448.929
+offset_left = -134.0
+offset_top = -290.0
+offset_right = -600.0
+offset_bottom = -404.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.7155, 1.61532)
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 158
+scale = Vector2(2.83365, 2.3157)
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 170
 theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 158
+theme_override_constants/margin_bottom = 140
 
 [node name="StoryText" type="RichTextLabel" parent="Scroll/Padding"]
 modulate = Color(1, 1, 1, 0)
@@ -222,7 +229,8 @@ light_mask = 2
 visibility_layer = 2
 z_index = 10
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 20
+theme_override_fonts/normal_font = ExtResource("3_sacoc")
+theme_override_font_sizes/normal_font_size = 18
 fit_content = true
 scroll_following = true
 tab_size = 10

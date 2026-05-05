@@ -9,5 +9,4 @@ var momo_max_damage: int = 40
 var current_health = 100
 var max_health = 100
 var greymen_damage = 20
-var current_time = 60
-var max_time = 60
+var stolen_time = 60
