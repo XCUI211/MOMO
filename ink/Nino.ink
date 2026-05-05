@@ -8,11 +8,11 @@ VAR stolen_time = 0
     - (TopBar)
     * (EnterWhileOpen) [Enter now]
     No time to waste. The sooner you enter, the sooner people will start saving time.
-    ~ stolen_time = stolen_time + 88
+    ~ stolen_time = stolen_time + 10
     -> EnteringTheBar
     * (EnterWhileClosed) [Wait for the bar to close]
     Easier to convince the bartender when he is not distracted by customers, you think.
-    ~ stolen_time = stolen_time - 401
+    ~ stolen_time = stolen_time + 5
     -> EnteringTheBar
 
 
@@ -39,10 +39,10 @@ VAR stolen_time = 0
                 Nino takes a moment to think on it. "I suppose I have." He finally admits. "I hadn't realised they were talking about the timesaving bank." He looks at you still a little confused. "Though I am still not quite sure on what it is you offer."
                 - - - (Explanations)
                 * * * * [Explain the timesaving bank]
-                ~ stolen_time = stolen_time - 310
+                ~ stolen_time = stolen_time + 10
                     -> ExplainTimesavingBank -> Explanations
                 * * * * [Show how much time Nino wastes]
-                ~ stolen_time = stolen_time + 137
+                ~ stolen_time = stolen_time + 5
                 -> HowMuchTimeIsWasted
                 - - - -
                 -> END              
@@ -54,37 +54,37 @@ VAR stolen_time = 0
     "And how exactly would, well you know..." The bartender begins before stopping and scratching his head.
     * [Let him finish his question]
         "well, I am not sure where to start exactly." Nino continues after a while. "To be honest it sounds like some esoteric nonsense to me." He finally concludes.
-        ~ stolen_time = stolen_time - 44
+        ~ stolen_time = stolen_time + 5 
     * [Interrupt him]
-        ~ stolen_time = stolen_time + 127
+        ~ stolen_time = stolen_time + 10
     -
         * * [Do not worry about the details]
             "The precise workings are unimportant. What matters are the results. All you have to do is save time, and we will take care of the rest."
             Nino takes another moment to think about it.
-            ~ stolen_time = stolen_time - 37
+            ~ stolen_time = stolen_time + 5
                 * * * [Press him]
                     "You see, if you did not let those gentlemen linger for so long, and if you spend less time cleaning, think of all the seconds you'd save a day."
                     A flash of anger appears on Nino's face. "Those gentlemen are good people and good friends; it is my pleasure to accommodate them."
-                    ~ stolen_time = stolen_time + 34
+                    ~ stolen_time = stolen_time + 5
                     * * * * [Apoligize]
                         "That was a bad example, but think about it, there are plenty of moments in the day where you waste your hours. If not the gentlemen, there must be other things you could do to save time."
                         Nino seems to accept your apology. Tentatively he answers: "I suppose there are some things I waste time on. I could save some time here and there."
-                        ~ stolen_time = stolen_time + 91
+                        ~ stolen_time = stolen_time + 15
                         ->->
                     * * * * [Press further]
                         "And what does their company provide you? Nothing! Not money, not time, nothing! If you had never let them linger then by my calculations you'd have saved 39420000 seconds with which you could've made something of yourself."
                         "Well, I, I..." Nino begins flustered, clearly distraught by the large number you mentioned. "That is a lot of time, isn't it?
-                        ~ stolen_time = stolen_time + 855
+                        ~ stolen_time = stolen_time + 15
                         ->->
                 * * * [Let him think]
                     After a while Nino slowly nods his head. "You make a good point. Well then, what could I do to save some time?"
-                    ~ stolen_time = stolen_time - 21
+                    ~ stolen_time = stolen_time + 10
                     -> HowToSaveTime
 
         * * [It is quite simple]
             "It is quite easy, simply forego activities that don't bring you wealth of fame, and make haste with the things that do. Then, all the seconds that you save this way will be deposited directly in the timesaving bank, to be retrieved at a later date by you."
             Nino slowly nods his head. "You make a good point. Well then, what could I do to save some time?"
-            ~ stolen_time = stolen_time + 143
+            ~ stolen_time = stolen_time + 10
             -> HowToSaveTime
     - - - -
     
@@ -104,7 +104,7 @@ VAR stolen_time = 0
     * [Start with simple things]
         "Just start with the simple things. Stop spendings so much time cleaning when closing shop. Don't spend so much time on useless things like small-talk and presentation."
         Nino nods thoughtfully. "Yeah, that makes sense. Let’s start with that."
-        ~ stolen_time = stolen_time + 456
+        ~ stolen_time = stolen_time + 10
         -> TimeStolen
     * [Much must change]
         "If you want to save any meaningful amount of time starting from your age, I am afraid you must make drastic changes." You list all the things Nino must do, most important of which is to close shop on time, irrespective of who may be present at the time. {EnterWhileOpen: 
@@ -113,7 +113,7 @@ VAR stolen_time = 0
             -> SendFriendsHome
             }
         "I do not like it, but I see the sense in it. I will try to follow your examples." Nino admits.
-        ~ stolen_time = stolen_time + 1107
+        ~ stolen_time = stolen_time + 15
         -> TimeStolen
 
 
@@ -132,10 +132,10 @@ VAR stolen_time = 0
                 "Do that every night, and imagine what time you could save," you point out, <>
             - - -
             <> "apply this to the rest of your life, and your account with us will be overflowing in no time. No time at all."
-            ~ stolen_time = stolen_time + 2441
+            ~ stolen_time = stolen_time + 15
         * * [Then find some other way]
             "Then think of other ways to get them to leave. The method matters not, only the results. Only the time that you will invariably save."
-            ~ stolen_time = stolen_time + 923
+            ~ stolen_time = stolen_time + 10
         - -
         The light in Nino's eyes is somewhat extinguished. Perfect. Those are the eyes of someone ready to save time.
         -> TimeStolen
