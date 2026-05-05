@@ -3,19 +3,28 @@ extends Control
 
 @export var next_scene: String = "res://src/scenes/Battle.tscn"
 @export var open_anim: String = "open"
-@export var open_anim_time: float = 1.2
-@export var type_speed: float = 0.02
+@export var open_anim_time: float = 1.5
+@export var type_speed: float = 0.04
 @export var line_pause: float = 0.35
-@export var end_pause: float = 1.8
+@export var end_pause: float = 2.8
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var text: RichTextLabel = $Scroll/Padding/StoryText
 
 var lines := [
-	"You are a greymen.",
-	".....",
-	".....",
-	"Defeat Momo....."
+	"Agent X152536 arrives at the edge of a quiet village.",
+	"He observes for a moment.",
+	"People having pointless conversations,",
+	"families moving sluggishly through markets,",
+	"an old man feeding birds instead of working.",
+	"No sense urgency.",
+	"So inefficient. So unstructured.", 
+	"Time is being lost everywhere he looks.",
+	"This is exactly where he needs to be.",
+	"He adjusts his suit and steps forward.",
+	"With the right words,",
+	"these villagers will gladly give up what they’re wasting anyway.",
+	"All it takes is a conversation."
 ]
 
 var _skipped := false
