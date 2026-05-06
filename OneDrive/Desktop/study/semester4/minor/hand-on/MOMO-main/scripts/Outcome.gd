@@ -53,7 +53,25 @@ func _ready() -> void:
 
 	if has_node("AnimationPlayer"):
 		$AnimationPlayer.play("fade_in")
+		
+func play_outcome_bgm(key: String) -> void:
+	var audio := get_node_or_null("/root/AudioManager")
+	if audio == null:
+		return
 
+	for child in audio.get_children():
+		if child.has_method("stop"):
+			child.stop()
+
+	if key == "defeat":
+		var defeat_bgm = audio.get_node_or_null("defeatBgm")
+		if defeat_bgm:
+			defeat_bgm.play()
+	else:
+		var victory_bgm = audio.get_node_or_null("victoryBgm")
+		if victory_bgm:
+			victory_bgm.play()
+			
 func _apply_fonts() -> void:
 	title_label.add_theme_font_override("font", OUTCOME_FONT)
 	title_label.add_theme_font_size_override("font_size", 63)
@@ -85,6 +103,7 @@ func _determine_outcome() -> String:
 	return "win_c"
 
 func _display_outcome(key: String) -> void:
+	play_outcome_bgm(key)
 	var data: Dictionary = OUTCOMES[key]
 
 	title_label.text = data["title"]

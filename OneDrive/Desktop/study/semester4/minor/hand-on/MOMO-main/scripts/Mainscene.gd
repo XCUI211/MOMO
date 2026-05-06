@@ -17,6 +17,7 @@ var _transitioning := false
 
 func _ready() -> void:
 	all_talked_panel.visible = false
+	play_main_bgm()
 	_refresh_value_label()
 	GlobalState.value_changed.connect(_on_value_changed)
 	GlobalState.all_npcs_talked.connect(_on_all_npcs_talked)

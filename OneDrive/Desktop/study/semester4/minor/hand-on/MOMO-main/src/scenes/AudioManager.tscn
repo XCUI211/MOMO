@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://uic1dj4rvxsp"]
+[gd_scene load_steps=14 format=3 uid="uid://uic1dj4rvxsp"]
 
 [ext_resource type="Script" uid="uid://dufxesj6i7gjc" path="res://src/scripts/audio_manager.gd" id="1_k0bi8"]
 [ext_resource type="AudioStream" uid="uid://b0p6xy8m6r8l7" path="res://Sounds/click.mp3" id="2_rsaqi"]
@@ -11,6 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://c4ppjo4d6yb47" path="res://Sounds/waveloom-jazz-bar-516749.mp3" id="9_p20an"]
 [ext_resource type="AudioStream" uid="uid://bf4a8q5jl20sd" path="res://Sounds/tokyorifft-nelferchfrench-bakery-457673.mp3" id="10_yl7xf"]
 [ext_resource type="AudioStream" uid="uid://pr48lja56gj4" path="res://Sounds/thebasspapa-thebasspapa-good-time-at-my-coiffeur-197928.mp3" id="11_dnifj"]
+[ext_resource type="AudioStream" uid="uid://w1ipv2vhen1n" path="res://Sounds/music_for_video-fail-22152.mp3" id="12_yl7xf"]
+[ext_resource type="AudioStream" uid="uid://vxkaaks1udtl" path="res://Sounds/the_mountain-success-513166.mp3" id="13_dnifj"]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_k0bi8")
@@ -51,4 +53,12 @@ volume_db = -10.0
 
 [node name="npcDBgm" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_dnifj")
+volume_db = -10.0
+
+[node name="defeatBgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_yl7xf")
+volume_db = -10.0
+
+[node name="victoryBgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_dnifj")
 volume_db = -10.0
