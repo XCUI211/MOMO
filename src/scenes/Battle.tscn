@@ -2193,16 +2193,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -11.0
-offset_top = -17.0
-offset_right = 78.0
-offset_bottom = 47.0
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 69.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.1025, 0.962147)
+scale = Vector2(0.966272, 0.937811)
 texture = ExtResource("2_aml3x")
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 6
 
 [node name="MomoContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

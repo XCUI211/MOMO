@@ -182,10 +182,11 @@ color = Color(0, 0, 0, 0)
 
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 640.0
-offset_bottom = 440.0
+offset_right = 922.0
+offset_bottom = 475.0
 scale = Vector2(1.24997, 1.36492)
 texture = ExtResource("2_t63xk")
+stretch_mode = 6
 
 [node name="Scroll" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(700, 900)

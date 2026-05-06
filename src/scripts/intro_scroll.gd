@@ -1,6 +1,6 @@
 extends Control
 
-@export var next_scene: String = "res://src/scenes/Battle.tscn"
+@export var next_scene: String = "res://scenes/Mainscene.tscn"
 @export var open_anim: String = "open"
 @export var open_anim_time: float = 0
 @export var type_speed: float = 0.03

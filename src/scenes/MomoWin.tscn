@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bxnwfa85cxi6h"]
+[gd_scene load_steps=27 format=4 uid="uid://w66hkga5uulb"]
 
 [ext_resource type="Script" uid="uid://bg2pxc71jgsar" path="res://src/scripts/ending.gd" id="1_c8y15"]
 [ext_resource type="Texture2D" uid="uid://cjygj3irlq2ud" path="res://sprites/Background_town.png" id="2_x720o"]
