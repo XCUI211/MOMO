@@ -1,5 +1,8 @@
-// Define global variable: the time the player has stolen (in minutes)
+-> barber
+
 VAR stolen_time = 0
+
+=== barber ===
 
 Rain taps softly against the pavement outside a small barbershop in the center of town.
 
