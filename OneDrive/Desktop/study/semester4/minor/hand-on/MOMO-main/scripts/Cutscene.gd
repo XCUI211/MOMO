@@ -19,7 +19,7 @@ var typing_speed := 0.035
 var boss_dialogue := [
 	{"name": "Momo", "text": "You finally came."},
 	{"name": "Momo", "text": "All the stolen time led you here."},
-	{"name": "Momo", "text": "I will protexxt the people I love and our precious time. I will defeat you."}
+	{"name": "Momo", "text": "I will protect the people I love and our precious time. I will defeat you."}
 ]
 
 func _ready() -> void:
