@@ -1,0 +1,15 @@
+[remap]
+
+importer="inkgd.ink.json"
+type="Resource"
+uid="uid://ds44i5v2teor6"
+path="res://.godot/imported/Nino.ink.json-3f6bc766946490254722b8ffce8a15c4.res"
+
+[deps]
+
+source_file="res://ink_story/Nino.ink.json"
+dest_files=["res://.godot/imported/Nino.ink.json-3f6bc766946490254722b8ffce8a15c4.res"]
+
+[params]
+
+compress=true
