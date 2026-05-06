@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://bnnjra5r50v5n"]
+
+[ext_resource type="Script" uid="uid://dyxg62blclf51" path="res://scripts/DialogueBox.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://dfljdjh2ytc1j" path="res://examples/fonts/Vollkorn-Regular.ttf" id="2_1n5wf"]
+[ext_resource type="FontFile" uid="uid://bg7p6xn0cv1qc" path="res://fonts/NESCyrillic.ttf" id="2_giuoe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1n5wf"]
+font = ExtResource("2_giuoe")
+font_size = 29
+font_color = Color(0.5163938, 0.5163938, 0.5163937, 1)
+outline_size = 6
+outline_color = Color(0.02617561, 0.026175609, 0.026175609, 1)
+
+[node name="DialogueBox" type="Control" unique_id=1858342196]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="DialogueBackground" type="TextureRect" parent="." unique_id=1201644263]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 39.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CharacterPortrait" type="TextureRect" parent="." unique_id=310796073]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.296
+anchor_top = 0.137
+anchor_right = 0.548
+anchor_bottom = 0.635
+offset_left = 5.0079956
+offset_top = -21.775993
+offset_right = 45.007996
+offset_bottom = 18.223999
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="." unique_id=1102667734]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 427.0
+offset_right = 1038.0
+offset_bottom = 612.0
+
+[node name="ContinueHint" type="Label" parent="Panel" unique_id=836934263]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.128
+anchor_right = 0.202
+offset_left = 711.92
+offset_top = 109.0
+offset_right = 794.9199
+offset_bottom = 158.0
+text = "▼ Continue
+"
+
+[node name="TextLabel" type="RichTextLabel" parent="Panel" unique_id=1133604115]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 980.0
+offset_bottom = 187.0
+theme_override_fonts/normal_font = ExtResource("2_1n5wf")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+
+[node name="NameLabel" type="Label" parent="Panel" unique_id=2065890705]
+layout_mode = 0
+anchor_top = -0.062
+offset_left = 13.0
+offset_top = -10.956
+offset_right = 120.0
+offset_bottom = 17.0
+label_settings = SubResource("LabelSettings_1n5wf")
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="." unique_id=1573597014]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 272.0
+offset_right = 994.0
+offset_bottom = 399.0

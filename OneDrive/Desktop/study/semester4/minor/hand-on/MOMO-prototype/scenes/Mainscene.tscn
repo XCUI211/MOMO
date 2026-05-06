@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://kl5ri0x5f2uk"]
+
+[ext_resource type="Script" uid="uid://ds0g0r83ylep8" path="res://scripts/NPC.gd" id="1"]
+[ext_resource type="Script" uid="uid://fqn0ab5a828i" path="res://scripts/Mainscene.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://bnnjra5r50v5n" path="res://scenes/DialogueBox.tscn" id="3"]
+[ext_resource type="FontFile" uid="uid://bg7p6xn0cv1qc" path="res://fonts/NESCyrillic.ttf" id="3_wwlsu"]
+[ext_resource type="Texture2D" uid="uid://crlubvgwx77ga" path="res://materials/IMG_2949.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c4fr7feuqi30f" path="res://materials/IMG_2947.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bu5y5ico425kd" path="res://materials/WhatsApp Image 2026-05-01 at 00.42.20.jpeg" id="6"]
+[ext_resource type="Texture2D" uid="uid://dj0smhpgpya1h" path="res://materials/IMG_2948.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cycklly05itqm" path="res://materials/IMG_2950.png" id="8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_10msl"]
+font = ExtResource("3_wwlsu")
+font_size = 21
+font_color = Color(3.3691526e-07, 0.28820953, 0.37108418, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwlsu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wmspp"]
+font = ExtResource("3_wwlsu")
+font_size = 23
+font_color = Color(1.6845763e-07, 0.28685313, 0.28714213, 1)
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 53.0
+height = 106.0
+
+[node name="Mainscene" type="Node2D" unique_id=1277226229]
+position = Vector2(72, 103)
+script = ExtResource("2")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1478463523]
+position = Vector2(526.8741, 236.75055)
+scale = Vector2(1.4326369, 1.1785694)
+texture = ExtResource("6")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=684886255]
+
+[node name="ValueLabel" type="Label" parent="HUD" unique_id=988337521]
+offset_left = 70.0
+offset_top = 62.0
+offset_right = 156.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 25
+label_settings = SubResource("LabelSettings_10msl")
+
+[node name="AllTalkedPanel" type="Panel" parent="HUD" unique_id=884658292]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = -218.0
+offset_right = -112.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwlsu")
+
+[node name="AllTalkedHint" type="Label" parent="HUD/AllTalkedPanel" unique_id=1587999455]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 236.0
+offset_top = 460.0
+offset_right = 861.0
+offset_bottom = 553.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_wmspp")
+
+[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=599600651]
+
+[node name="DialogueBox" parent="DialogueLayer" unique_id=1230542319 instance=ExtResource("3")]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 7.0
+offset_bottom = 9.0
+
+[node name="NPC_A" type="Area2D" parent="." unique_id=1448323110]
+position = Vector2(208, 248)
+script = ExtResource("1")
+npc_id = "npc_a"
+ink_knot_name = "beppo_encounter"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_A" unique_id=283008557]
+position = Vector2(-63, -33)
+shape = SubResource("1")
+
+[node name="InteractHint" type="Label" parent="NPC_A" unique_id=86965016]
+offset_left = -106.0
+offset_top = 57.0
+offset_bottom = 85.0
+text = "Talk to Beppo"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC_A" unique_id=1886791966]
+position = Vector2(-46, -42)
+scale = Vector2(2.1011233, 2.188889)
+texture = ExtResource("5")
+
+[node name="NPC_B" type="Area2D" parent="." unique_id=1512424754]
+position = Vector2(277, 207)
+script = ExtResource("1")
+npc_id = "npc_b"
+ink_knot_name = "Bar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_B" unique_id=1283763820]
+position = Vector2(81, 20)
+shape = SubResource("1")
+
+[node name="InteractHint" type="Label" parent="NPC_B" unique_id=1696803208]
+offset_left = 41.0
+offset_top = 97.0
+offset_right = 135.0
+offset_bottom = 124.0
+text = "Talk to Nino"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC_B" unique_id=534328571]
+position = Vector2(101.00001, -8.999996)
+scale = Vector2(2.357092, 2.4034724)
+texture = ExtResource("7")
+
+[node name="NPC_C" type="Area2D" parent="." unique_id=1041820275]
+position = Vector2(503, 206)
+script = ExtResource("1")
+npc_id = "npc_c"
+ink_knot_name = "baker_encounter"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_C" unique_id=731108937]
+position = Vector2(91, -2)
+shape = SubResource("1")
+
+[node name="InteractHint" type="Label" parent="NPC_C" unique_id=549780855]
+offset_left = 51.0
+offset_top = 99.0
+offset_right = 153.0
+offset_bottom = 126.0
+text = "Talk to Baker"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC_C" unique_id=154421197]
+position = Vector2(96.999985, -1.9999905)
+scale = Vector2(2.2689605, 2.2194424)
+texture = ExtResource("4")
+
+[node name="NPC_D" type="Area2D" parent="." unique_id=1901069960]
+position = Vector2(720, 209)
+script = ExtResource("1")
+npc_id = "npc_d"
+ink_knot_name = "barber"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_D" unique_id=1647946385]
+position = Vector2(115, 16)
+shape = SubResource("1")
+
+[node name="InteractHint" type="Label" parent="NPC_D" unique_id=1361626398]
+offset_left = 66.0
+offset_top = 93.0
+offset_right = 176.0
+offset_bottom = 120.0
+text = "Talk to Barber"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC_D" unique_id=1195042202]
+position = Vector2(108.00001, -4.0000076)
+scale = Vector2(2.1481738, 2.1875002)
+texture = ExtResource("8")

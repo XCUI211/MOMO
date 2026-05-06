@@ -1,0 +1,7 @@
+res://default_env.tres
+res://scripts/Cutscene.gd
+res://scenes/Mainscene.tscn
+res://fonts/NES.tres
+res://scripts/GlobalState.gd
+res://scripts/Mainscene.gd
+res://scripts/Outcome.gd

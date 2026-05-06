@@ -1,0 +1,46 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="MOMO-dialogue"
+run/main_scene="uid://5ru4wj8ck706"
+config/features=PackedStringArray("4.6")
+config/icon="res://icon.png"
+
+[autoload]
+
+__InkRuntime="*uid://dnb8sp4t5k78o"
+GlobalState="*res://scripts/GlobalState.gd"
+InkManager="*res://scripts/ink_initial.gd"
+State="*uid://c2u70ktu3ps3t"
+AudioManager="*uid://uic1dj4rvxsp"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/inkgd/plugin.cfg")
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[inkgd]
+
+register_templates=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/defaults/default_environment="res://default_env.tres"
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
