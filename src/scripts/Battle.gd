@@ -113,7 +113,8 @@ func momo_turn():
 		var defend_damage = randi_range(0, current_momo_damage)
 
 		current_player_health = max(0, current_player_health - defend_damage)
-
+		
+		AudioManager.hurt_sfx.play()
 		$AnimationPlayer.play("mini_shake")
 		await $AnimationPlayer.animation_finished
 
@@ -132,7 +133,7 @@ func momo_turn():
 		await self.textbox_closed
 
 		is_isolating = false
-
+		AudioManager.hurt_sfx.play()
 		$AnimationPlayer.play("mini_shake")
 		await $AnimationPlayer.animation_finished
 
@@ -143,7 +144,7 @@ func momo_turn():
 
 	else:
 		current_player_health = max(0, current_player_health - current_momo_damage)
-
+		AudioManager.hurt_sfx.play()
 		$AnimationPlayer.play("shake")
 		await $AnimationPlayer.animation_finished
 
