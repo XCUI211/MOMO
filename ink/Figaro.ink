@@ -10,7 +10,7 @@ Inside, Mr. Figaro stands by the door, waiting. "Life is passing me by... What d
 "... A customer! What can I do for you? A shave? A haircut?" Mr. Figaro welcomes you, feeling very excited to finally have a customer.
 
     + [A haircut]
-        ~ stolen_time -= 15
+        ~ stolen_time -= 0
         
         "A haircut." You answer plainly.
         You are bald so this confuses Figaro greatly. You end up staring at each other in silence.
@@ -22,7 +22,7 @@ Inside, Mr. Figaro stands by the door, waiting. "Life is passing me by... What d
         -> trust
     
     + [Neither, I am from the Timesaving Bank]
-        ~ stolen_time += 15
+        ~ stolen_time -= 0
         
         "Neither, I am agent WDV/284/b from the timesaving bank." You introduce yourselft.
     
@@ -37,7 +37,7 @@ Inside, Mr. Figaro stands by the door, waiting. "Life is passing me by... What d
 "Hmm... can I trust this stranger?" Mr. Figaro mutters to himself, you see his eyes full of doubt.
 
     + [Twirl your moustache]
-        ~ stolen_time -= 0
+        ~ stolen_time += 10
      
         You twirl your moustache.
     
@@ -46,11 +46,11 @@ Inside, Mr. Figaro stands by the door, waiting. "Life is passing me by... What d
         -> work
     
     + [Walk around the store]
-    ~ stolen_time -= 5
+    ~ stolen_time += 10
     
         You walk around the store.
     
-        'Is he judging my store?' Mr. Figaro has his guard up as you walk around seemingly evaluating the store.
+        'Is he judging my store? I should have cleaned a bit more...' Mr. Figaro thinks to himself as you walk around seemingly evaluating the store.
         
         -> work
 
@@ -74,14 +74,14 @@ Mr. Figaro starts defending himself, not wainting to disappoint such appearing d
 "Of course you can avoid it!"
 
     + [Stop talking so much, it slow downs business!]
-        ~ stolen_time += 15
+        ~ stolen_time += 10
         
         "Stop talking so much, it slow downs business!"
         
         -> more
         
     + [Mirrors are distractions. Focus on working efficiently, customers will have to stop talking about their looks.]
-        ~ stolen_time += 10
+        ~ stolen_time += 5
         
         "Mirrors are distractions. Focus on working efficiently, customers will have to stop talking about their looks." You emphazise loudly. 
         "Ask them beforehand if they think what they have to say is relevant to your work."
@@ -89,7 +89,7 @@ Mr. Figaro starts defending himself, not wainting to disappoint such appearing d
         -> efficiency
         
     + [But I guess it's fine. Creating a fine atmosphere gives comfort to the customers.]
-        ~ stolen_time -= 10
+        ~ stolen_time -= 0
         
         "But I guess it's fine. Creating a fine atmosphere gives comfort to the customers."
         
@@ -106,7 +106,7 @@ He looks dejected. "But... I do have clients... only a few regulars, I guess..."
 And it works. "Then..." He starts slowly. "How can I improve and work faster?"
 
     + [Hire more workers. Imagine doubling your clients. Triple bookings. No empty chairs.]
-        ~ stolen_time += 10
+        ~ stolen_time += 5
         
         "Hire more workers. Imagine doubling your clients. Triple bookings. No empty chairs."
         
@@ -115,7 +115,7 @@ And it works. "Then..." He starts slowly. "How can I improve and work faster?"
         -> success
         
     + [Have more hooded floor hair dryers. You won't have to manually dry hair.]
-        ~ stolen_time += 20
+        ~ stolen_time += 10
         
         "Have more hooded floor hair dryers. You won't have to manually dry hair."
         
@@ -128,7 +128,7 @@ And it works. "Then..." He starts slowly. "How can I improve and work faster?"
         -> success
         
     + [Or maybe quality matters more than quantity.]
-        ~ stolen_time -= 10
+        ~ stolen_time -= 5
         
         "Or maybe quality matters more than quantity."
         
@@ -143,14 +143,14 @@ Mr. looks unsure. "But how will that help me save time...?" He asks.
 Mr. Figaro looks encouraged. "I see! I can become more successful and enjoy more free time after!" He then pauses. "But... how can I be more efficient?"
 
     + [Take two clients at once. Alternate between them.]
-        ~ stolen_time += 15
+        ~ stolen_time += 5
         
         "Take two clients at once. Alternate between them."
         
         -> success
         
     + [Work faster. Shorten every haircut. Precision is overrated]
-        ~ stolen_time += 20
+        ~ stolen_time += 10
         
         "Work faster. Shorten every haircut. Precision is overrated."
         
@@ -163,14 +163,14 @@ Mr. Figaro looks encouraged. "I see! I can become more successful and enjoy more
 He's already taken the bait. Continue to lure him in.
 
     + [Sign this Time Savings Agreement. We'll help you improve your efficiency so you can enjoy your saved time after retirement.]
-        ~ stolen_time += 20
+        ~ stolen_time += 10
         
         "Sign this Time Savings Agreement. We'll help you improve your efficiency so you can enjoy your saved time after retirement."
         
         -> barber_end
         
     + [Sign with us and cut down meaningless activities, it will show your customers your professionalism.]
-        ~ stolen_time += 15
+        ~ stolen_time += 5
         
         "Sign with us and cut down meaningless activities, it will show your customers your professionalism."
         
@@ -187,14 +187,8 @@ You useless fool, you completely ruined it.
 === barber_end ===
 --------------------------------------------------
 END OF CONVERSATION:
-Total time stolen from Mr. Figaro: {stolen_time} minutes.
 
-{ stolen_time < 0:
-   You lost {stolen_time * -1} minutes.
-- else:
-    You gained {stolen_time} minutes.
-}
+You now have a total of {stolen_time} minutes stolen!
 --------------------------------------------------
 You turn and vanish into the gray mist of the city, preparing for your next target.
-
 -> END
