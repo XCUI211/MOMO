@@ -144,7 +144,8 @@ VAR stolen_time = 0
 === TimeStolen
 END OF CONVERSATION:
 
-You now have {stolen_time} minutes stolen!
+You now have a total of {stolen_time} minutes stolen!
 --------------------------------------------------
 You turn and vanish into the gray mist of the city, preparing for your next target.
 -> END
+
