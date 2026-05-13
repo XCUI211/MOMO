@@ -1,5 +1,6 @@
 // Define global variable: the time the player has stolen (in minutes)
 VAR stolen_time = 0
+VAR loop = 0
 
 -> baker_encounter
 
@@ -13,14 +14,14 @@ Perfect. She already appears anxious about her time management.
 
 You take a long drag of your cigar. The warmth of the bakery fades a bit. How do you begin?
 
-* [Fuel her time anxiety.]
+* [Fuel her time anxiety. { loop == 1 : (+ 20 / + 15) }]
     ~ stolen_time += 20
    
     "Your baking seems... inefficient. How long did it take you to finish this batch?"
     Fusi stiffens. "Well... good bread takes time... doesn’t it?" You see doubt flicker behind her pride, and then shift to confusion. "But... who are you to begin with?"
     -> baker_turn_2a
 
-* [Question her work capacity.]
+* [Question her work capacity. { loop == 1 : (+ 25 / + 10) }]
     ~ stolen_time += 25
     
     "What a cozy little bakery, all these pastries smell and look amazing. A pity it is so small, imagine a ten more tables and having more space: ten times more customers, ten times more profit."
@@ -33,8 +34,8 @@ You take a long drag of your cigar. The warmth of the bakery fades a bit. How do
 
 "I am agent WDV/284/b from the timesaving bank. We help precious citizens like you save and stop wasting time."
 She glances at the clock again. The hook is set. "But... how does one... save time in baking?"
-    
-    * ["Skip the slow fermentation, add refined and processed ingredients. Faster baking, same profit."]
+    - (Top)
+    * ["Skip the slow fermentation, add refined and processed ingredients. Faster baking, same profit." { loop == 1 : (+ 5 / + 10) }]
         ~ stolen_time += 5
         
         "Skip the slow fermentation, add refined and processed ingredients. Faster baking, same profit."
@@ -43,7 +44,8 @@ She glances at the clock again. The hook is set. "But... how does one... save ti
         Her intergrity begins to rot from within.
         -> baker_turn_3a
     
-    * ["Stop chatting with customers. Every conversation is time wasted you could've been baking."]
+    * ["Stop chatting with customers. Every conversation is time wasted you could've been baking." { loop == 1 : (+ 0 / + 10) }]
+        { loop == 1: This is not the best option. Try again. -> Top }
         ~ stolen_time += 0
         
         "Stop chatting with customers. Every conversation is time wasted you could've been baking."
@@ -52,7 +54,8 @@ She glances at the clock again. The hook is set. "But... how does one... save ti
         Her warmth begins to fade.
         -> baker_turn_3b
     
-    * ["Actually... never mind. Good bread takes time. Keep doing what you're doing".]
+    * ["Actually... never mind. Good bread takes time. Keep doing what you're doing". { loop == 1 : (+ 0 / + 10) }]
+        { loop == 1: This is not the best option. Try again. -> Top }
         ~ stolen_time -= 0
         
         "Actually... never mind. Good bread takes time. Keep doing what you're doing."
@@ -67,8 +70,8 @@ She glances at the clock again. The hook is set. "But... how does one... save ti
 "I am agent WDV/284/b from the timesaving bank. We help precious citizens like you save and stop wasting time."
     
 "I have never heard of such bank." Fusi leans forward, breathing faster. "Ten times the customers... I could be the best baker in the city!"
-    
-    * ["Exactly. But only if you stop wasting time on perfection."]
+    - (Top)
+    * ["Exactly. But only if you stop wasting time on perfection." { loop == 1 : (+ 0 / + 10) }]
         ~ stolen_time += 0
         
         "Exactly. But only if you stop wasting time on perfection."
@@ -77,7 +80,7 @@ She glances at the clock again. The hook is set. "But... how does one... save ti
         Her standards begin to collapse.
         -> baker_turn_3b
     
-    * ["Hire workers. Replace care with speed. Scale is everything."]
+    * ["Hire workers. Replace care with speed. Scale is everything." { loop == 1 : (+ 0 / + 10) }]
         ~ stolen_time += 0
         
         "Hire workers. Replace care with speed. Scale is everything."
@@ -85,7 +88,8 @@ She glances at the clock again. The hook is set. "But... how does one... save ti
         She nods rapidly. "Yes... more hands, faster production..." She starts thinking like a machine.
         -> baker_turn_3a
     
-    * ["But more customers also means more responsibility. And more stress."]
+    * ["But more customers also means more responsibility. And more stress." { loop == 1 : (+ 0 / + 5) }]
+        { loop == 1: This is not the best option. Try again. -> Top }
         ~ stolen_time -= 0
         
         "But more customers also means more responsibility. More stress."
@@ -96,8 +100,8 @@ She glances at the clock again. The hook is set. "But... how does one... save ti
 
 === baker_turn_3a ===
 Fusi Begins to work on a new batch. Her hands move faster now, too fast. The dough becomes uneven as she mutters: "Faster, faster, faster. Customers won’t notice... right?"
-
-* ["Good. Now shorten baking times too. Burn less fuel, save more minutes."]
+- (Top)
+* ["Good. Now shorten baking times too. Burn less fuel, save more minutes." { loop == 1 : (+ 5 / + 5) }]
     ~ stolen_time += 5
     "Good. Now shorten baking times too. Burn less fuel, save more minutes."
     
@@ -105,7 +109,7 @@ Fusi Begins to work on a new batch. Her hands move faster now, too fast. The dou
     You inhale thick clouds of wasted craftsmanship and poorly made bread.
     -> baker_success
 
-* ["Exactly, why even bake fresh? Sell yesterday’s bread as today’s."]
+* ["Exactly, why even bake fresh? Sell yesterday’s bread as today’s." { loop == 1 : (+ 5 / + 5) }]
     ~ stolen_time += 5
     "Exactly, why even bake fresh? Sell yesterday’s bread as today’s."
     
@@ -113,7 +117,8 @@ Fusi Begins to work on a new batch. Her hands move faster now, too fast. The dou
     She completely forgets her pride.
     -> baker_success
 
-* ["This looks terrible. Even faster, you’re still behind!"]
+* ["This looks terrible. Even faster, you’re still behind!" { loop == 1 : (+ 0 / + 5) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time += 0
     "This looks terrible. Even faster, you’re still behind!"
     
@@ -125,22 +130,23 @@ Fusi Begins to work on a new batch. Her hands move faster now, too fast. The dou
 Fusi stops smiling entirely and starts working like a machine.
 
 "No time... no talking... only baking..." She wispers to herself.
-
-* ["Perfect. From now on, every saved minute goes to us for safekeeping."]
+- (Top)
+* ["Perfect. From now on, every saved minute goes to us for safekeeping." { loop == 1 : (+ 5 / + 5) }]
     ~ stolen_time += 5
     "Perfect. From now on, every saved minute goes to us for safekeeping."
     
     Her humanity fades into a gray routine.
     -> baker_success
 
-* ["Remove all decoration too. Plain bread is faster."]
+* ["Remove all decoration too. Plain bread is faster." { loop == 1 : (+ 5 / + 5) }]
     ~ stolen_time += 0
     "Remove all decoration too. Plain bread is faster."
     
    She strips away all artistry. The bakery becomes lifeless.
     -> baker_success
 
-* ["You look exhausted from working without rest. Maybe you should take a break."]
+* ["You look exhausted from working without rest. Maybe you should take a break." { loop == 1 : (+ 0 /- 5) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time -= 0
     "You look exhausted from working without rest. Maybe you should take a break."
     
@@ -179,7 +185,7 @@ Fusi wipes her hands slowly. Her breathing steadies. "I like baking the way I do
 This is it. The ovens hum. The clock ticks loudly.
 You must secure the contract now.
 
-* ["Sign this Time Savings Agreement. We guarantee you maximum efficiency."]
+* ["Sign this Time Savings Agreement. We guarantee you maximum efficiency." { loop == 1 : (+ 5 / END) }]
     ~ stolen_time += 5
     "Sign this Time Savings Agreement. We guarantee you maximum efficiency."
     
@@ -187,7 +193,7 @@ You must secure the contract now.
     The bakery fills with gray smoke as years of joy are extracted.
     -> baker_end
 
-* ["If you don’t follow our suggestions, your competitors will destroy you. If you sign with us, we can garantee you a lifetime of saved time."]
+* ["If you don’t follow our suggestions, your competitors will destroy you. If you sign with us, we can garantee you a lifetime of saved time." { loop == 1 : (+ 5 / END) }]
     ~ stolen_time += 5
     "If you don’t follow our suggestions, your competitors will destroy you. If you sign with us, we can garantee you a lifetime of saved time."
     

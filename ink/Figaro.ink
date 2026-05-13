@@ -1,5 +1,6 @@
 // Define global variable: the time the player has stolen (in minutes)
 VAR stolen_time = 0
+VAR loop = 0
 
 Rain taps softly against the pavement outside a small barbershop in the center of town.
 
@@ -9,7 +10,7 @@ Inside, Mr. Figaro stands by the door, waiting. "Life is passing me by... What d
 
 "... A customer! What can I do for you? A shave? A haircut?" Mr. Figaro welcomes you, feeling very excited to finally have a customer.
 
-    + [A haircut]
+    * [A haircut { loop == 1 : (+ 0 / + 40) }]
         ~ stolen_time -= 0
         
         "A haircut." You answer plainly.
@@ -21,7 +22,7 @@ Inside, Mr. Figaro stands by the door, waiting. "Life is passing me by... What d
     
         -> trust
     
-    + [Neither, I am from the Timesaving Bank]
+    * [Neither, I am from the Timesaving Bank { loop == 1 : (+ 0 / + 40) }]
         ~ stolen_time -= 0
         
         "Neither, I am agent WDV/284/b from the timesaving bank." You introduce yourselft.
@@ -36,7 +37,7 @@ Inside, Mr. Figaro stands by the door, waiting. "Life is passing me by... What d
 
 "Hmm... can I trust this stranger?" Mr. Figaro mutters to himself, you see his eyes full of doubt.
 
-    + [Twirl your moustache]
+    * [Twirl your moustache { loop == 1 : (+ 10 / + 40) }]
         ~ stolen_time += 10
      
         You twirl your moustache.
@@ -45,7 +46,7 @@ Inside, Mr. Figaro stands by the door, waiting. "Life is passing me by... What d
         
         -> work
     
-    + [Walk around the store]
+    * [Walk around the store { loop == 1 : (+ 10 / + 40) }]
     ~ stolen_time += 10
     
         You walk around the store.
@@ -72,15 +73,17 @@ Inside, Mr. Figaro stands by the door, waiting. "Life is passing me by... What d
 Mr. Figaro starts defending himself, not wainting to disappoint such appearing distinguished gentelman. "Well I can’t exactly avoid talking to my customers-" 
 
 "Of course you can avoid it!"
+    - (Top)
+    * [Stop talking so much, it slow downs business! { loop == 1 : (+ 10 / + 30) }]
 
-    + [Stop talking so much, it slow downs business!]
         ~ stolen_time += 10
         
         "Stop talking so much, it slow downs business!"
         
         -> more
         
-    + [Mirrors are distractions. Focus on working efficiently, customers will have to stop talking about their looks.]
+    * [Mirrors are distractions. Focus on working efficiently, customers will have to stop talking about their looks. { loop == 1 : (+ 5 / + 30) }]
+        { loop == 1: This is not the best option. Try again. -> Top }
         ~ stolen_time += 5
         
         "Mirrors are distractions. Focus on working efficiently, customers will have to stop talking about their looks." You emphazise loudly. 
@@ -88,7 +91,8 @@ Mr. Figaro starts defending himself, not wainting to disappoint such appearing d
         
         -> efficiency
         
-    + [But I guess it's fine. Creating a fine atmosphere gives comfort to the customers.]
+    * [But I guess it's fine. Creating a fine atmosphere gives comfort to the customers. { loop == 1 : (+ 0 / + 10) }]
+        { loop == 1: This is not the best option. Try again. -> Top }
         ~ stolen_time -= 0
         
         "But I guess it's fine. Creating a fine atmosphere gives comfort to the customers."
@@ -104,8 +108,9 @@ He looks dejected. "But... I do have clients... only a few regulars, I guess..."
 "People know you are slow, eventually they will all leave somewhere else." You continue to provoke him.
 
 And it works. "Then..." He starts slowly. "How can I improve and work faster?"
-
-    + [Hire more workers. Imagine doubling your clients. Triple bookings. No empty chairs.]
+    - (Top)
+    * [Hire more workers. Imagine doubling your clients. Triple bookings. No empty chairs. { loop == 1 : (+ 5 / + 10) }]
+        { loop == 1: This is not the best option. Try again. -> Top }
         ~ stolen_time += 5
         
         "Hire more workers. Imagine doubling your clients. Triple bookings. No empty chairs."
@@ -114,7 +119,7 @@ And it works. "Then..." He starts slowly. "How can I improve and work faster?"
     
         -> success
         
-    + [Have more hooded floor hair dryers. You won't have to manually dry hair.]
+    * [Have more hooded floor hair dryers. You won't have to manually dry hair. { loop == 1 : (+ 10 / + 10) }]
         ~ stolen_time += 10
         
         "Have more hooded floor hair dryers. You won't have to manually dry hair."
@@ -127,7 +132,8 @@ And it works. "Then..." He starts slowly. "How can I improve and work faster?"
         
         -> success
         
-    + [Or maybe quality matters more than quantity.]
+    * [Or maybe quality matters more than quantity. { loop == 1 : (- 5 / + 0) }]
+        { loop == 1: This is not the best option. Try again. -> Top }
         ~ stolen_time -= 5
         
         "Or maybe quality matters more than quantity."
@@ -141,15 +147,16 @@ Mr. looks unsure. "But how will that help me save time...?" He asks.
 "well, by those activities are useless." You say as if it's a matter of fact. "Saving time is all about being efficient, and the more time you save by being efficient, the more you can rest and enjoy afterwards."
 
 Mr. Figaro looks encouraged. "I see! I can become more successful and enjoy more free time after!" He then pauses. "But... how can I be more efficient?"
-
-    + [Take two clients at once. Alternate between them.]
+    - (Top)
+    * [Take two clients at once. Alternate between them. { loop == 1 : (+ 5 / + 10) }]
+        { loop == 1: This is not the best option. Try again. -> Top }
         ~ stolen_time += 5
         
         "Take two clients at once. Alternate between them."
         
         -> success
         
-    + [Work faster. Shorten every haircut. Precision is overrated]
+    * [Work faster. Shorten every haircut. Precision is overrated{ loop == 1 : (+ 10 / + 10) }]
         ~ stolen_time += 10
         
         "Work faster. Shorten every haircut. Precision is overrated."
@@ -161,15 +168,16 @@ Mr. Figaro looks encouraged. "I see! I can become more successful and enjoy more
 === success ===
 
 He's already taken the bait. Continue to lure him in.
-
-    + [Sign this Time Savings Agreement. We'll help you improve your efficiency so you can enjoy your saved time after retirement.]
+    - (Top)
+    * [Sign this Time Savings Agreement. We'll help you improve your efficiency so you can enjoy your saved time after retirement. { loop == 1 : (+ 10 / END) }]
         ~ stolen_time += 10
         
         "Sign this Time Savings Agreement. We'll help you improve your efficiency so you can enjoy your saved time after retirement."
         
         -> barber_end
         
-    + [Sign with us and cut down meaningless activities, it will show your customers your professionalism.]
+    * [Sign with us and cut down meaningless activities, it will show your customers your professionalism. { loop == 1 : (+ 5 / END) }]
+        { loop == 1: This is not the best option. Try again. -> Top }
         ~ stolen_time += 5
         
         "Sign with us and cut down meaningless activities, it will show your customers your professionalism."

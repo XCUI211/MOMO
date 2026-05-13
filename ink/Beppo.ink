@@ -1,5 +1,6 @@
 // Define global variable: the time the player has stolen (in minutes)
 VAR stolen_time = 0
+VAR loop = 0
 
 -> beppo_encounter
 
@@ -8,8 +9,8 @@ You straighten your gray suit and take a deep drag of your cigar. The smoke you 
 Ahead of you is Beppo, the street sweeper.
 He is sweeping: one step, one deep breath, one sweep. His movements are agonizingly slow. 
 You must break his rhythm and make him anxious. How do you open?
-
-* ["Old man, your efficiency is terrible! You'll never hit your lifetime KPIs!"]
+- (Top)
+* ["Old man, your efficiency is terrible! You'll never hit your lifetime KPIs!" { loop == 1 : (+ 15 / + 20) }]
     ~ stolen_time += 15
     
     "Old man, your efficiency is terrible! You'll never hit your lifetime KPIs!"
@@ -18,7 +19,7 @@ You must break his rhythm and make him anxious. How do you open?
     You waste ten minutes explaining modern corporate management. He doesn't get it, and you just get angry!
     -> beppo_turn_2_slow
 
-* ["What a beautiful rhythm. But if you swept faster, you'd have more time for Momo, right?"]
+* ["What a beautiful rhythm. But if you swept faster, you'd have more time for Momo, right?" { loop == 1 : (+ 15 / + 20) }]
     ~ stolen_time += 15
     
     "What a beautiful rhythm. But if you swept faster, you'd have more time for Momo, right?"
@@ -27,7 +28,8 @@ You must break his rhythm and make him anxious. How do you open?
     "More time... for Momo?" His breathing rhythm breaks.
     -> beppo_turn_2_hooked
 
-* ["Hi! This Dyson V15 super-suction broom can boost your sweeping speed by 300%! I only need your time in exchange!"]
+* ["Hi! This Dyson V15 super-suction broom can boost your sweeping speed by 300%! I only need your time in exchange!" { loop == 1 : (+ 15 / + 15) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time += 15
     
     "Hi! This Dyson V15 super-suction broom can boost your sweeping speed by 300%! I only need your time in exchange!"
@@ -40,8 +42,8 @@ You must break his rhythm and make him anxious. How do you open?
 === beppo_turn_2_slow ===
 He is immune to corporate jargon. You need to steer the conversation back to "saving time," or your cigar will burn out for nothing!
 Beppo slowly raises his broom. "This street... is very long. One must never look at the end... Just one step... at a time."
-
-* ["Stop dawdling! Use strategic planning! Take two steps, half a breath, and sweep three times! 300% efficiency!"]
+- (Top)
+* ["Stop dawdling! Use strategic planning! Take two steps, half a breath, and sweep three times! 300% efficiency!" { loop == 1 : (+ 5 / + 15) }]
     ~ stolen_time += 5
     
     "Stop dawdling! Use strategic planning! Take two steps, half a breath, and sweep three times! 300% efficiency!"
@@ -49,7 +51,8 @@ Beppo slowly raises his broom. "This street... is very long. One must never look
     Beppo's mind frantically calculates. He tries your "hardcore controls," trips over his own feet, and suffers brain overload.
     -> beppo_turn_3_frustrated
 
-* ["What if the street never ends? You're going to die on this pavement like a useless NPC!"]
+* ["What if the street never ends? You're going to die on this pavement like a useless NPC!" { loop == 1 : (+ 0 / + 5) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time -= 0
     
     "What if the street never ends? You're going to die on this pavement like a useless NPC!"
@@ -58,7 +61,8 @@ Beppo slowly raises his broom. "This street... is very long. One must never look
     His zen-like aura is suffocating. You lose time just listening to him.
     -> beppo_turn_3_unchanged
 
-* ["Move aside! Let me show you how a speedrunner does it!"]
+* ["Move aside! Let me show you how a speedrunner does it!" { loop == 1 : (- 5 / + 5) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time -= 5
     
     "Move aside! Let me show you how a speedrunner does it!"
@@ -71,8 +75,8 @@ Beppo slowly raises his broom. "This street... is very long. One must never look
 === beppo_turn_2_hooked ===
 Excellent. The hook is in.
 Beppo sighs, a drop of sweat forming on his forehead. "But... how does one... save time?"
-
-* ["Simple! Skip the meaningless pauses! Don't look at the clouds. Sweep like a relentless machine!"]
+- (Top)
+* ["Simple! Skip the meaningless pauses! Don't look at the clouds. Sweep like a relentless machine!" { loop == 1 : (+ 10 / + 10) }]
     ~ stolen_time += 10
     
     "Simple! Skip the meaningless pauses! Don't look at the clouds. Sweep like a relentless machine!"
@@ -80,7 +84,8 @@ Beppo sighs, a drop of sweat forming on his forehead. "But... how does one... sa
     Beppo grips his broom tighter. He stares dead at the ground, no longer looking at the scenery. The light in his eyes dims.
     -> beppo_turn_3_fast
 
-* ["Deposit your daydreaming time into our 'Time Savings Bank'. We offer compound interest!"]
+* ["Deposit your daydreaming time into our 'Time Savings Bank'. We offer compound interest!" { loop == 1 : (+ 5 / + 10) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time += 5
     
     "Deposit your daydreaming time into our 'Time Savings Bank'. We offer compound interest!"
@@ -88,7 +93,8 @@ Beppo sighs, a drop of sweat forming on his forehead. "But... how does one... sa
     Beppo looks confused. "Time... can be deposited?" You seize the moment and rapid-fire an 80-page liability waiver at him.
     -> beppo_turn_3_fast
 
-* ["Just sweep the trash directly into the sewer grates. Nobody will notice, and it saves two hours a day."]
+* ["Just sweep the trash directly into the sewer grates. Nobody will notice, and it saves two hours a day." { loop == 1 : (+ 0 / + 5) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time -= 0
     
     "Just sweep the trash directly into the sewer grates. Nobody will notice, and it saves two hours a day."
@@ -129,8 +135,8 @@ Beppo is still staring at your empty hands, trying to visualize the "Dyson V15."
 === beppo_turn_3_fast ===
 Beppo's movements are much faster now, but stiff and erratic.
 He mutters to himself like a maniac: "Faster... must go faster... save time... for the future..."
-
-* ["Exactly! From today on, no more chatting with friends, no more slow meals! Give every saved second to me, and we will keep it safe for you"]
+- (Top)
+* ["Exactly! From today on, no more chatting with friends, no more slow meals! Give every saved second to me, and we will keep it safe for you" { loop == 1 : (+ 5 / + 5) }]
     ~ stolen_time += 5
     
     "Exactly! From today on, no more chatting with friends, no more slow meals! Give every saved second to me, and we will keep it safe for you"
@@ -138,7 +144,8 @@ He mutters to himself like a maniac: "Faster... must go faster... save time... f
     A perfect drain! Beppo is now a numb sweeping machine. You inhale a massive cloud of rich, gray time.
     -> beppo_turn_4
 
-* ["Yes! If you sweep fast enough, the friction might even let you time travel, old man!"]
+* ["Yes! If you sweep fast enough, the friction might even let you time travel, old man!" { loop == 1 : (+ 0 / + 5) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time += 0
     
     "Yes! If you sweep fast enough, the friction might even let you time travel, old man!"
@@ -146,7 +153,8 @@ He mutters to himself like a maniac: "Faster... must go faster... save time... f
     Beppo buys your nonsense and spins in a high-speed circle until he vomits. You got time, but it smells like stomach acid.
     -> beppo_turn_4
 
-* ["Never mind... you look miserable. Stop sweeping and go have some tea with Momo."]
+* ["Never mind... you look miserable. Stop sweeping and go have some tea with Momo." { loop == 1 : (- 5 / + 5) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time -= 5
     
     "Never mind... you look miserable. Stop sweeping and go have some tea with Momo."
@@ -158,8 +166,8 @@ He mutters to himself like a maniac: "Faster... must go faster... save time... f
 
 === beppo_turn_3_frustrated ===
 Beppo is sweating profusely. The joy of sweeping is dead. "Why are you doing this to me?!" he yells.
-
-* ["Because the clock is ticking, Beppo! Every second you cry is a second wasted!"]
+- (Top)
+* ["Because the clock is ticking, Beppo! Every second you cry is a second wasted!" { loop == 1 : (+ 10 / + 5) }]
     ~ stolen_time += 10
     
     "Because the clock is ticking, Beppo! Every second you cry is a second wasted!"
@@ -167,7 +175,8 @@ Beppo is sweating profusely. The joy of sweeping is dead. "Why are you doing thi
     His frustration turns into sheer panic. He frantically tries to sweep while wiping his tears, generating delicious, chaotic time-sparks.
     -> beppo_turn_4
 
-* ["I am simply optimizing your workflow to align with modern synergistic paradigms."]
+* ["I am simply optimizing your workflow to align with modern synergistic paradigms." { loop == 1 : (- 5 / + 5) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time -= 5
     
     "I am simply optimizing your workflow to align with modern synergistic paradigms."
@@ -175,7 +184,8 @@ Beppo is sweating profusely. The joy of sweeping is dead. "Why are you doing thi
     You went back to corporate jargon. His frustration turns to extreme boredom. He stops sweeping to massage his temples.
     -> beppo_turn_4
 
-* ["Sign this timesaving contract, and the pain stops forever!"]
+* ["Sign this timesaving contract, and the pain stops forever!" { loop == 1 : (+ 5 / + 5) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time += 5
     
     "Sign this timesaving contract, and the pain stops forever!"
@@ -242,8 +252,9 @@ He is completely at peace. Your words slide right off him. This is your last cha
 
 === beppo_turn_4 ===
 This is your last chance. You can sense that in the nearby amphitheater, that girl named Momo is listening to someone. Time is running out. You must take down Beppo right now!
-
-* [Snatch his broom! "If you don't sign, this broom becomes the property of the Timesaving Bank!"]
+- (Top)
+* [Snatch his broom! "If you don't sign, this broom becomes the property of the Timesaving Bank!" { loop == 1 : (+ 0 / END) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time -= 0
 
     Snatch his broom! "If you don't sign, this broom becomes the property of the Timesaving Bank!"
@@ -252,7 +263,7 @@ This is your last chance. You can sense that in the nearby amphitheater, that gi
     He is actually starting to enjoy doing nothing! You stole absolutely nothing and suffered the backlash of the laws of Time!
     -> beppo_end
 
-* [Hand him a form full of dense gibberish. "This is the Imperial Broom Upgrade and Maintenance Annual Review. You must sign within 5 seconds, or your sweeping license will be revoked!"]
+* [Hand him a form full of dense gibberish. "This is the Imperial Broom Upgrade and Maintenance Annual Review. You must sign within 5 seconds, or your sweeping license will be revoked!" { loop == 1 : (+ 5 / END) }]
     ~ stolen_time += 5
     
     Hand him a form full of dense gibberish. "This is the Imperial Broom Upgrade and Maintenance Annual Review. You must sign within 5 seconds, or your sweeping license will be revoked!"
@@ -261,7 +272,8 @@ This is your last chance. You can sense that in the nearby amphitheater, that gi
     The Time Contract is sealed! A massive amount of time turns into grey smoke and is sucked into your briefcase!
     -> beppo_end
 
-* [Blow thick grey smoke right in his face and shout like a broken record: "Time is money! Efficiency is life! Hurry, hurry, hurry!"]
+* [Blow thick grey smoke right in his face and shout like a broken record: "Time is money! Efficiency is life! Hurry, hurry, hurry!" { loop == 1 : (+ 0 / END) }]
+    { loop == 1: This is not the best option. Try again. -> Top }
     ~ stolen_time -= 0
     
     Blow thick grey smoke right in his face and shout like a broken record: "Time is money! Efficiency is life! Hurry, hurry, hurry!"
