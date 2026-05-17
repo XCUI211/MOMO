@@ -9,10 +9,10 @@ var current_npc := ""
 var story_loaded := false
 var pending_knot := ""
 var story_files: Dictionary = {
-	"npc_a": preload("res://ink_story/beppo.ink.json"),
-	"npc_b": preload("res://ink_story/Nino.ink.json"),
-	"npc_c": preload("res://ink_story/baker.ink.json"),
-	"npc_d": preload("res://ink_story/barber.ink.json"),
+	"npc_a": preload("res://ink_story/Beppo.json"),
+	"npc_b": preload("res://ink_story/Nino.json"),
+	"npc_c": preload("res://ink_story/Fusi.json"),
+	"npc_d": preload("res://ink_story/Figaro.json"),
 }
 
 func _ready() -> void:

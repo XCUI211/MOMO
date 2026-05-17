@@ -19,17 +19,17 @@ const OUTCOMES := {
 		"bg_texture": "res://assets/outcomes/bg_defeat.png",
 	},
 	"win_a": {
-		"title": "Pyrrhic Victory — Scarred",
+		"title": "Pyrrhic Victory",
 		"body": "You survived, but at a heavy cost.\nYour stats fell short, and victory feels bitter.",
 		"bg_texture": "res://assets/outcomes/bg_win_a.png",
 	},
 	"win_b": {
-		"title": "Victory — The Journey Home",
+		"title": "Victory",
 		"body": "With proper preparation, you claimed victory.\nThe road ahead is long, but you have proven how much you are good at manipulate time.",
 		"bg_texture": "res://assets/outcomes/bg_win_b.png",
 	},
 	"win_c": {
-		"title": "Perfect Victory — Hero",
+		"title": "Perfect Victory",
 		"body": "You won! \n This village is now a capitalistic hellscape, I hope you feel good very about yourself…",
 		"bg_texture": "res://assets/outcomes/bg_win_c.png",
 	},

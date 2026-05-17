@@ -1,0 +1,15 @@
+[remap]
+
+importer="inkgd.ink.json"
+type="Resource"
+uid="uid://chqbw7k5cmwx2"
+path="res://.godot/imported/Figaro.json-cad73582ea5f0e3cf7298fd2722b62ba.res"
+
+[deps]
+
+source_file="res://ink_story/Figaro.json"
+dest_files=["res://.godot/imported/Figaro.json-cad73582ea5f0e3cf7298fd2722b62ba.res"]
+
+[params]
+
+compress=true

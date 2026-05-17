@@ -1,4 +1,4 @@
-[gd_resource type="FontFile" load_steps=6 format=4 uid="uid://k6gsls5d8t5o"]
+[gd_resource type="FontFile" format=4 uid="uid://k6gsls5d8t5o"]
 
 [sub_resource type="Image" id="Image_r2bwn"]
 data = {
@@ -44,6 +44,15 @@ font_weight = 500
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 11.0
 cache/0/16/0/descent = 1.0
 cache/0/16/0/underline_position = 2.39062
@@ -419,6 +428,15 @@ cache/0/28/0/glyphs/76/texture_idx = 0
 
 [resource]
 fallbacks = Array[Font]([SubResource("3")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
