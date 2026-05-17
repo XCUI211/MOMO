@@ -7,6 +7,8 @@ signal cutscene_dialogue_finished
 const CHAR_DELAY := 0.01
 const TEXT_PAGE_HEIGHT_MARGIN := 8.0
 const PAGE_BREAK_CHARS := " \n\t，。！？、；：,.!?;:"
+const PORTRAIT_FLOAT_DISTANCE := 6.0
+const PORTRAIT_FLOAT_TIME := 0.45
 
 const NPC_BACKGROUNDS := {
 	"npc_a": "res://materials/IMG_2992.png",
@@ -153,16 +155,20 @@ var _typewriter_skip_requested := false
 var _dialogue_pages: Array = []
 var _dialogue_page_index := 0
 
-var _system_prompt_mode := false
+enum Mode { NORMAL, SYSTEM_PROMPT, CUTSCENE }
+var _current_mode: Mode = Mode.NORMAL
 var _system_prompt_click_to_continue := false
 
-var _cutscene_mode := false
 var _cutscene_lines: Array = []
 var _cutscene_line_index := 0
+
+var _portrait_base_position := Vector2.ZERO
+var _portrait_float_tween: Tween
 
 
 func _ready() -> void:
 	visible = false
+	_portrait_base_position = portrait.position
 
 	text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	text_label.fit_content = false
@@ -174,58 +180,30 @@ func _ready() -> void:
 	InkManager.story_ended.connect(_on_story_ended)
 
 
-func open_dialogue(npc_id: String, knot_name: String) -> void:
-	_system_prompt_mode = false
-	_system_prompt_click_to_continue = false
-	_cutscene_mode = false
-
-	mouse_filter = Control.MOUSE_FILTER_STOP
-	panel.mouse_filter = Control.MOUSE_FILTER_STOP
-
-	name_label.visible = true
-	text_label.visible = true
-	choices_container.visible = true
-	continue_hint.visible = false
-
-	_current_npc_id = npc_id
+func _reset_state_and_ui(mode: Mode, theme_key: String = "default") -> void:
+	_current_mode = mode
+	_current_npc_id = ""
 	_waiting_choice = false
 	_story_ended = false
 	_text_animating = false
 	_typewriter_skip_requested = false
 	_current_full_text = ""
-	_pending_choices = []
-	_dialogue_pages = []
+	_pending_choices.clear()
+	_dialogue_pages.clear()
 	_dialogue_page_index = 0
-
-	name_label.text = NPC_NAMES.get(npc_id, npc_id)
-	text_label.text = ""
-	continue_hint.visible = false
+	_stop_portrait_speaking(false)
+	
 	_clear_choices()
-
-	var theme_key: String = npc_id if THEMES.has(npc_id) else "default"
 	_apply_theme(theme_key)
-
-	var bg_path: String = NPC_BACKGROUNDS.get(npc_id, "")
-	if not bg_path.is_empty():
-		dialogue_bg.visible = true
-		dialogue_bg.texture = load(bg_path)
-		dialogue_bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-		dialogue_bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	else:
-		dialogue_bg.texture = null
-		dialogue_bg.visible = false
-
-	var portrait_path: String = NPC_PORTRAITS.get(npc_id, "")
-	if not portrait_path.is_empty():
-		portrait.texture = load(portrait_path)
-		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
-		portrait.visible = true
-	else:
-		portrait.visible = false
-
+	
+	continue_hint.visible = false
+	dialogue_bg.visible = false
+	dialogue_bg.texture = null
+	portrait.visible = false
+	name_label.visible = false
+	choices_container.visible = false
+	
 	visible = true
-	InkManager.start_npc_dialogue(npc_id)
-	InkManager.start_knot(knot_name)
 
 
 func _apply_theme(theme_key: String) -> void:
@@ -270,64 +248,63 @@ func _apply_theme(theme_key: String) -> void:
 	_current_theme = t
 
 
+func _is_confirm_action(event: InputEvent) -> bool:
+	var clicked = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed
+	var confirmed = event is InputEventKey and (event.keycode == KEY_SPACE or event.keycode == KEY_ENTER) and event.pressed
+	return clicked or confirmed
+
+
+func _start_portrait_speaking() -> void:
+	if _current_mode != Mode.NORMAL or not portrait.visible or portrait.texture == null:
+		return
+
+	_stop_portrait_speaking(false)
+	portrait.position = _portrait_base_position
+	_portrait_float_tween = create_tween().set_loops()
+	_portrait_float_tween.tween_property(
+		portrait,
+		"position:y",
+		_portrait_base_position.y - PORTRAIT_FLOAT_DISTANCE,
+		PORTRAIT_FLOAT_TIME
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_portrait_float_tween.tween_property(
+		portrait,
+		"position:y",
+		_portrait_base_position.y,
+		PORTRAIT_FLOAT_TIME
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+func _stop_portrait_speaking(animate_back: bool = true) -> void:
+	if _portrait_float_tween != null and _portrait_float_tween.is_valid():
+		_portrait_float_tween.kill()
+	_portrait_float_tween = null
+
+	if portrait == null:
+		return
+
+	if animate_back and portrait.visible:
+		var reset_tween := create_tween()
+		reset_tween.tween_property(
+			portrait,
+			"position",
+			_portrait_base_position,
+			0.12
+		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	else:
+		portrait.position = _portrait_base_position
+
+
+
+
 func _input(event: InputEvent) -> void:
-	if not visible:
+	if not visible or not _is_confirm_action(event):
 		return
 
-	if _system_prompt_mode:
-		if not _system_prompt_click_to_continue:
-			return
-
-		var prompt_clicked := false
-		if event is InputEventMouseButton:
-			prompt_clicked = event.button_index == MOUSE_BUTTON_LEFT and event.pressed
-
-		var prompt_confirmed := false
-		if event is InputEventKey:
-			prompt_confirmed = (event.keycode == KEY_SPACE or event.keycode == KEY_ENTER) and event.pressed
-
-		if not prompt_clicked and not prompt_confirmed:
-			return
-
-		get_viewport().set_input_as_handled()
-		system_prompt_clicked.emit()
-		return
-
-	if _cutscene_mode:
-		var cutscene_clicked := false
-		if event is InputEventMouseButton:
-			cutscene_clicked = event.button_index == MOUSE_BUTTON_LEFT and event.pressed
-
-		var cutscene_confirmed := false
-		if event is InputEventKey:
-			cutscene_confirmed = (event.keycode == KEY_SPACE or event.keycode == KEY_ENTER) and event.pressed
-
-		if not cutscene_clicked and not cutscene_confirmed:
-			return
-
-		if _text_animating:
+	if _current_mode == Mode.SYSTEM_PROMPT:
+		if _system_prompt_click_to_continue:
 			get_viewport().set_input_as_handled()
-			_finish_typewriter_now()
-			return
-
-		if _has_more_dialogue_pages():
-			get_viewport().set_input_as_handled()
-			_show_next_dialogue_page()
-			return
-
-		get_viewport().set_input_as_handled()
-		_show_next_cutscene_line()
-		return
-
-	var clicked := false
-	if event is InputEventMouseButton:
-		clicked = event.button_index == MOUSE_BUTTON_LEFT and event.pressed
-
-	var confirmed := false
-	if event is InputEventKey:
-		confirmed = (event.keycode == KEY_SPACE or event.keycode == KEY_ENTER) and event.pressed
-
-	if not clicked and not confirmed:
+			system_prompt_clicked.emit()
 		return
 
 	if _text_animating:
@@ -341,16 +318,25 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if _waiting_choice:
+		if event is InputEventMouseButton:
+			var click_pos: Vector2 = event.position
+			var container_rect := choices_container.get_global_rect()
+			if choices_container.visible and container_rect.has_point(click_pos):
+				return 
+		get_viewport().set_input_as_handled()
 		return
 
 	get_viewport().set_input_as_handled()
+
+	if _current_mode == Mode.CUTSCENE:
+		_show_next_cutscene_line()
+		return
 
 	if _story_ended:
 		_close()
 		return
 
 	InkManager.continue_story()
-
 
 func _finish_typewriter_now() -> void:
 	if not _text_animating:
@@ -359,6 +345,7 @@ func _finish_typewriter_now() -> void:
 	_typewriter_skip_requested = true
 	_text_animating = false
 	text_label.text = _current_full_text
+	_stop_portrait_speaking(false)
 
 
 func _on_story_continued(text: String, _tags: Array) -> void:
@@ -396,10 +383,12 @@ func _play_typewriter(full_text: String) -> void:
 	_typewriter_skip_requested = false
 	_current_full_text = full_text
 	text_label.text = ""
+	_start_portrait_speaking()
 
 	for i in range(full_text.length() + 1):
 		if not is_inside_tree():
 			_text_animating = false
+			_stop_portrait_speaking(false)
 			return
 
 		if _typewriter_skip_requested:
@@ -415,6 +404,7 @@ func _play_typewriter(full_text: String) -> void:
 
 	_text_animating = false
 	_typewriter_skip_requested = false
+	_stop_portrait_speaking()
 
 	if not is_inside_tree():
 		return
@@ -430,7 +420,7 @@ func _after_typewriter() -> void:
 		continue_hint.visible = true
 		return
 
-	if _cutscene_mode:
+	if _current_mode == Mode.CUTSCENE:
 		var cutscene_hint: String = _current_theme.get("hint_text_normal", "▶")
 		continue_hint.text = cutscene_hint
 		continue_hint.visible = true
@@ -557,6 +547,7 @@ func _find_safe_page_break(source: String, start: int, max_end: int) -> int:
 
 func _show_choices(choices: Array) -> void:
 	_clear_choices()
+	choices_container.visible = true
 
 	for i in range(choices.size()):
 		var btn := Button.new()
@@ -612,6 +603,7 @@ func _clear_choices() -> void:
 
 
 func _on_choice_pressed(index: int) -> void:
+	print("choice pressed: ", index)
 	_clear_choices()
 	_waiting_choice = false
 	_dialogue_pages = []
@@ -619,64 +611,76 @@ func _on_choice_pressed(index: int) -> void:
 	InkManager.make_choice(index)
 
 
-func _close() -> void:
-	visible = false
-	dialogue_closed.emit(_current_npc_id)
-
-	_current_npc_id = ""
-	_story_ended = false
-	_text_animating = false
-	_typewriter_skip_requested = false
-	_current_full_text = ""
-	_current_theme = {}
-	_dialogue_pages = []
-	_dialogue_page_index = 0
-	_pending_choices = []
-	_cutscene_mode = false
-	_cutscene_lines = []
-	_cutscene_line_index = 0
-
-
-func play_cutscene_dialogue(lines: Array, theme_key: String = "default") -> void:
-	_cutscene_mode = true
-	_cutscene_lines = lines
-	_cutscene_line_index = 0
-
-	_system_prompt_mode = false
-	_system_prompt_click_to_continue = false
-
-	_current_npc_id = ""
-	_waiting_choice = false
-	_story_ended = false
-	_text_animating = false
-	_typewriter_skip_requested = false
-	_current_full_text = ""
-	_pending_choices = []
-	_dialogue_pages = []
-	_dialogue_page_index = 0
-
-	_clear_choices()
-	_apply_theme(theme_key)
-
+func open_dialogue(npc_id: String, knot_name: String) -> void:
+	var theme_key = npc_id if THEMES.has(npc_id) else "default"
+	_reset_state_and_ui(Mode.NORMAL, theme_key)
+	
+	_current_npc_id = npc_id
+	name_label.text = NPC_NAMES.get(npc_id, npc_id)
+	name_label.visible = true
+	text_label.text = ""
+	choices_container.visible = true
+	
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	panel.mouse_filter = Control.MOUSE_FILTER_STOP
 
-	visible = true
-	name_label.visible = true
-	text_label.visible = true
-	choices_container.visible = false
-	continue_hint.visible = false
+	var bg_path: String = NPC_BACKGROUNDS.get(npc_id, "")
+	if not bg_path.is_empty():
+		dialogue_bg.visible = true
+		dialogue_bg.texture = load(bg_path)
+		dialogue_bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		dialogue_bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 
-	dialogue_bg.texture = null
-	dialogue_bg.visible = false
-	portrait.visible = false
+	var portrait_path: String = NPC_PORTRAITS.get(npc_id, "")
+	if not portrait_path.is_empty():
+		portrait.visible = true
+		portrait.texture = load(portrait_path)
+		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+		_portrait_base_position = portrait.position
+
+	InkManager.start_npc_dialogue(npc_id)
+	InkManager.start_knot(knot_name)
+
+
+func show_system_prompt(prompt_text: String, click_to_continue: bool = false) -> void:
+	_reset_state_and_ui(Mode.SYSTEM_PROMPT, "default")
+	_system_prompt_click_to_continue = click_to_continue
+	_current_full_text = prompt_text
+	text_label.text = prompt_text
+	
+	continue_hint.visible = click_to_continue
+	if click_to_continue:
+		continue_hint.text = _current_theme.get("hint_text_normal", "▶ Click to continue")
+		mouse_filter = Control.MOUSE_FILTER_STOP
+		panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	else:
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+func hide_system_prompt() -> void:
+	if _current_mode == Mode.SYSTEM_PROMPT:
+		_stop_portrait_speaking(false)
+		visible = false
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+func play_cutscene_dialogue(lines: Array, theme_key: String = "default") -> void:
+	_reset_state_and_ui(Mode.CUTSCENE, theme_key)
+	_cutscene_lines = lines
+	_cutscene_line_index = 0
+	
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	name_label.visible = true
 
 	_show_next_cutscene_line()
 
 
 func _show_next_cutscene_line() -> void:
 	if _cutscene_line_index >= _cutscene_lines.size():
-		_cutscene_mode = false
+		_current_mode = Mode.NORMAL
 		visible = false
 		cutscene_dialogue_finished.emit()
 		return
@@ -696,3 +700,13 @@ func _show_next_cutscene_line() -> void:
 		_dialogue_pages.append("")
 
 	_play_typewriter(_dialogue_pages[_dialogue_page_index])
+
+
+func _close() -> void:
+	_stop_portrait_speaking()
+	var closed_npc_id := _current_npc_id
+	_reset_state_and_ui(Mode.NORMAL)
+	visible = false
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	dialogue_closed.emit(closed_npc_id)

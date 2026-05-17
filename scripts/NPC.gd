@@ -7,7 +7,6 @@ signal npc_clicked(npc_id: String, knot_name: String)
 
 @onready var interact_hint: Node = $InteractHint
 
-var _hovered := false
 
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
@@ -21,12 +20,10 @@ func _ready() -> void:
 		interact_hint.visible = false
 
 func _on_mouse_entered() -> void:
-	_hovered = true
 	if interact_hint and not GlobalState.npc_talked.get(npc_id, false):
 		interact_hint.visible = true
 
 func _on_mouse_exited() -> void:
-	_hovered = false
 	if interact_hint:
 		interact_hint.visible = false
 
