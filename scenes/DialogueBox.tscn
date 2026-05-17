@@ -61,9 +61,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.128
 anchor_right = 0.202
-offset_left = 666.92
+offset_left = 644.92
 offset_top = 165.0
-offset_right = 783.03
+offset_right = 728.03
 offset_bottom = 214.0
 text = "▼ Continue
 "
@@ -80,13 +80,13 @@ theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 
 [node name="NameLabel" type="Label" parent="Panel" unique_id=1793019597]
-visible = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_top = -0.062
-offset_left = 13.0
-offset_top = -10.956
-offset_right = 120.0
-offset_bottom = 17.0
+offset_left = 3.0
+offset_top = -12.9719925
+offset_right = 110.0
+offset_bottom = 14.984009
 label_settings = SubResource("LabelSettings_1n5wf")
 
 [node name="ChoicesContainer" type="VBoxContainer" parent="." unique_id=1623295693]
