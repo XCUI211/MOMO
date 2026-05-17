@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://kl5ri0x5f2uk"]
+
+[ext_resource type="Script" uid="uid://ds0g0r83ylep8" path="res://scripts/NPC.gd" id="1"]
+[ext_resource type="Script" uid="uid://fqn0ab5a828i" path="res://scripts/Mainscene.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://cjygj3irlq2ud" path="res://sprites/Background_town.png" id="2_wwlsu"]
+[ext_resource type="PackedScene" uid="uid://bnnjra5r50v5n" path="res://scenes/DialogueBox.tscn" id="3"]
+[ext_resource type="FontFile" uid="uid://bg7p6xn0cv1qc" path="res://fonts/NESCyrillic.ttf" id="3_wwlsu"]
+[ext_resource type="Texture2D" uid="uid://crlubvgwx77ga" path="res://materials/IMG_2949.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c4fr7feuqi30f" path="res://materials/IMG_2947.png" id="5"]
+[ext_resource type="FontFile" uid="uid://k6gsls5d8t5o" path="res://fonts/NES.tres" id="6_10msl"]
+[ext_resource type="Texture2D" uid="uid://dj0smhpgpya1h" path="res://materials/IMG_2948.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cycklly05itqm" path="res://materials/IMG_2950.png" id="8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_10msl"]
+font = ExtResource("3_wwlsu")
+font_size = 21
+font_color = Color(3.36915e-07, 0.28821, 0.371084, 1)
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 53.0
+height = 106.0
+
+[node name="Mainscene" type="Node2D" unique_id=1353713679]
+position = Vector2(72, 103)
+script = ExtResource("2")
+
+[node name="Background" type="TextureRect" parent="." unique_id=846925040]
+custom_minimum_size = Vector2(1000, 500)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -107.0
+offset_right = 924.0
+offset_bottom = 393.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.15903, 1.31752)
+texture = ExtResource("2_wwlsu")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=587519449]
+
+[node name="ValueLabel" type="Label" parent="HUD" unique_id=2125218238]
+offset_left = 70.0
+offset_top = 62.0
+offset_right = 156.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 25
+label_settings = SubResource("LabelSettings_10msl")
+
+[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=1736395237]
+
+[node name="DialogueBox" parent="DialogueLayer" unique_id=1635182702 instance=ExtResource("3")]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 7.0
+offset_bottom = 9.0
+
+[node name="NPC_A" type="Area2D" parent="." unique_id=734201813]
+position = Vector2(208, 248)
+script = ExtResource("1")
+npc_id = "npc_a"
+ink_knot_name = "beppo_encounter"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_A" unique_id=1321614752]
+position = Vector2(-63, -33)
+shape = SubResource("1")
+
+[node name="InteractHint" type="Label" parent="NPC_A" unique_id=1053469254]
+offset_left = -106.0
+offset_top = 64.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("6_10msl")
+text = "Talk to Beppo"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC_A" unique_id=2073015997]
+position = Vector2(-49, -38)
+scale = Vector2(2.10112, 2.18889)
+texture = ExtResource("5")
+
+[node name="NPC_B" type="Area2D" parent="." unique_id=157408046]
+position = Vector2(276, 210)
+script = ExtResource("1")
+npc_id = "npc_b"
+ink_knot_name = "Bar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_B" unique_id=1782043647]
+position = Vector2(81, 20)
+shape = SubResource("1")
+
+[node name="InteractHint" type="Label" parent="NPC_B" unique_id=24601308]
+offset_left = 46.0
+offset_top = 101.0
+offset_right = 140.0
+offset_bottom = 128.0
+theme_override_fonts/font = ExtResource("6_10msl")
+text = "Talk to Nino"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC_B" unique_id=1766381661]
+position = Vector2(93, -8)
+scale = Vector2(2.35709, 2.40347)
+texture = ExtResource("7")
+
+[node name="NPC_C" type="Area2D" parent="." unique_id=1132703428]
+position = Vector2(503, 206)
+script = ExtResource("1")
+npc_id = "npc_c"
+ink_knot_name = "baker_encounter"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_C" unique_id=2079253579]
+position = Vector2(91, -2)
+shape = SubResource("1")
+
+[node name="InteractHint" type="Label" parent="NPC_C" unique_id=26743071]
+offset_left = 55.0
+offset_top = 106.0
+offset_right = 157.0
+offset_bottom = 133.0
+theme_override_fonts/font = ExtResource("6_10msl")
+text = "Talk to Fiso"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC_C" unique_id=1511061145]
+position = Vector2(101, -2.99999)
+scale = Vector2(2.26896, 2.21944)
+texture = ExtResource("4")
+
+[node name="NPC_D" type="Area2D" parent="." unique_id=35895334]
+position = Vector2(720, 209)
+script = ExtResource("1")
+npc_id = "npc_d"
+ink_knot_name = "barber"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_D" unique_id=1981011142]
+position = Vector2(115, 16)
+shape = SubResource("1")
+
+[node name="InteractHint" type="Label" parent="NPC_D" unique_id=450997884]
+offset_left = 70.0
+offset_top = 103.0
+offset_right = 180.0
+offset_bottom = 130.0
+theme_override_fonts/font = ExtResource("6_10msl")
+text = "Talk to Firago"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC_D" unique_id=606889302]
+position = Vector2(105, -1.00001)
+scale = Vector2(2.14817, 2.1875)
+texture = ExtResource("8")

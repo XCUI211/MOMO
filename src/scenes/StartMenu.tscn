@@ -1,0 +1,269 @@
+[gd_scene load_steps=15 format=3 uid="uid://5ru4wj8ck706"]
+
+[ext_resource type="Script" uid="uid://cib43cuj8s6j4" path="res://src/scripts/start_menu.gd" id="1_aefqy"]
+[ext_resource type="Texture2D" uid="uid://rf67ecul0dbs" path="res://sprites/Momo_1.png" id="3_auo2m"]
+[ext_resource type="Texture2D" uid="uid://bgad5nggv5tys" path="res://sprites/Baker.png" id="4_7jctj"]
+[ext_resource type="Texture2D" uid="uid://cjygj3irlq2ud" path="res://sprites/Background_town.png" id="4_auo2m"]
+[ext_resource type="Texture2D" uid="uid://c8odxs1r5wttw" path="res://sprites/Barber.png" id="5_auo2m"]
+[ext_resource type="Texture2D" uid="uid://br2ui2f8efol5" path="res://sprites/Momo_2.png" id="6_sdiym"]
+[ext_resource type="Texture2D" uid="uid://dim3k5tqdesj5" path="res://sprites/Beppo.png" id="6_v80os"]
+[ext_resource type="Texture2D" uid="uid://8fbaqfrpu2pf" path="res://sprites/Nino.png" id="7_sdiym"]
+[ext_resource type="FontFile" uid="uid://ca854dweeuj0i" path="res://fonts/Star Choco.ttf" id="9_v80os"]
+
+[sub_resource type="StyleBoxFlat" id="5"]
+bg_color = Color(0.384314, 0.611765, 0.258824, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.584314, 0.807843, 0.537255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Animation" id="Animation_v80os"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Momo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_auo2m"]
+resource_name = "momo"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Momo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.173197, 0.291378, 0.464575, 0.586832, 0.760029, 0.900624, 1.07382, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sdiym"]
+_data = {
+&"RESET": SubResource("Animation_v80os"),
+&"momo": SubResource("Animation_auo2m")
+}
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aefqy")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 45.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.964349, 1.0491)
+texture = ExtResource("4_auo2m")
+stretch_mode = 6
+
+[node name="Momo2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = 70.0
+offset_right = 144.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.22098, 1.2585)
+size_flags_horizontal = 4
+texture = ExtResource("3_auo2m")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Momo" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = 70.0
+offset_right = 144.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.22098, 1.2585)
+size_flags_horizontal = 4
+texture = ExtResource("6_sdiym")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Baker" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 111.0
+offset_top = -213.0
+offset_right = 311.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.33372, 1.34287)
+size_flags_horizontal = 4
+texture = ExtResource("4_7jctj")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Barber" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 291.0
+offset_top = -227.0
+offset_right = 476.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.1466, 1.22651)
+size_flags_horizontal = 4
+texture = ExtResource("5_auo2m")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Beppo" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -215.0
+offset_top = -206.0
+offset_right = -56.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.30608, 1.29336)
+size_flags_horizontal = 4
+texture = ExtResource("6_v80os")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Nino" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.243363
+anchor_top = 0.920532
+anchor_right = 0.260977
+anchor_bottom = 0.976852
+offset_left = -72.354
+offset_top = -161.505
+offset_right = 72.354
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.30608, 1.29336)
+size_flags_horizontal = 4
+texture = ExtResource("7_sdiym")
+expand_mode = 1
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6875
+anchor_top = 0.401235
+anchor_right = 0.6875
+anchor_bottom = 0.401235
+offset_left = -147.0
+offset_top = -18.0
+offset_right = 33.0
+offset_bottom = 42.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.909804, 0.972549, 0.976471, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_v80os")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/hover = SubResource("5")
+theme_override_styles/pressed = SubResource("5")
+theme_override_styles/normal = SubResource("4")
+text = "Start Now!"
+metadata/_edit_use_anchors_ = true
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.251736
+anchor_top = 0.401235
+anchor_right = 0.251736
+anchor_bottom = 0.401235
+offset_top = -18.0
+offset_right = 180.0
+offset_bottom = 42.0
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.909804, 0.972549, 0.976471, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_v80os")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/hover = SubResource("5")
+theme_override_styles/pressed = SubResource("5")
+theme_override_styles/normal = SubResource("4")
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sdiym")
+}
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

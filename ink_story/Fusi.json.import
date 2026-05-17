@@ -1,0 +1,15 @@
+[remap]
+
+importer="inkgd.ink.json"
+type="Resource"
+uid="uid://ccnyjbtgaayuv"
+path="res://.godot/imported/Fusi.json-b774cc5a99f286bf11f3a7867f553d01.res"
+
+[deps]
+
+source_file="res://ink_story/Fusi.json"
+dest_files=["res://.godot/imported/Fusi.json-b774cc5a99f286bf11f3a7867f553d01.res"]
+
+[params]
+
+compress=true

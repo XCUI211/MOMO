@@ -1,0 +1,15 @@
+[remap]
+
+importer="inkgd.ink.json"
+type="Resource"
+uid="uid://c3dyan64v537c"
+path="res://.godot/imported/Beppo.json-3113c4090966b3408a17507c08cf5cde.res"
+
+[deps]
+
+source_file="res://ink_story/Beppo.json"
+dest_files=["res://.godot/imported/Beppo.json-3113c4090966b3408a17507c08cf5cde.res"]
+
+[params]
+
+compress=true

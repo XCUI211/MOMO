@@ -1,0 +1,15 @@
+[remap]
+
+importer="inkgd.ink.json"
+type="Resource"
+uid="uid://c1y3oytoqui8p"
+path="res://.godot/imported/Barber.ink.json-22f10c1de9fca5904eb38e03569d739d.res"
+
+[deps]
+
+source_file="res://ink_story/Barber.ink.json"
+dest_files=["res://.godot/imported/Barber.ink.json-22f10c1de9fca5904eb38e03569d739d.res"]
+
+[params]
+
+compress=true
