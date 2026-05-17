@@ -1,7 +1,9 @@
 // Define global variable: the time the player has stolen (in minutes)
 VAR stolen_time = 0
 VAR loop = 0
+-> barber
 
+=== barber ===
 Rain taps softly against the pavement outside a small barbershop in the center of town.
 
 Inside, Mr. Figaro stands by the door, waiting. "Life is passing me by... What do I have to show for it?" You hear him mutter to himself. "If I had more time... I could be something else. Someone better." 
