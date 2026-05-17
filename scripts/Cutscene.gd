@@ -20,4 +20,5 @@ func _ready() -> void:
 
 
 func _on_cutscene_dialogue_finished() -> void:
+	GlobalState.save_battle_start_value()
 	get_tree().change_scene_to_file(BATTLE_SCENE)

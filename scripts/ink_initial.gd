@@ -47,9 +47,10 @@ func start_knot(knot_name: String) -> void:
 		return
 
 	ink_player.set_variable("stolen_time", GlobalState.stolen_time)
+	ink_player.set_variable("loop", GlobalState.loop)
+
 	ink_player.choose_path(knot_name)
 	continue_story()
-
 func continue_story() -> void:
 	if not story_loaded:
 		return

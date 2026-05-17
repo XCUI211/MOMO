@@ -70,9 +70,11 @@ func play_npc_bgm(npc_id: String) -> void:
 		var bgm = audio.get_node_or_null(bgm_map[npc_id])
 		if bgm == null:
 			return
+
+		if npc_id == "npc_d":
+			bgm.play(6.0)
 		else:
 			bgm.play()
-
 
 func play_main_bgm() -> void:
 	_stop_all_bgm()
