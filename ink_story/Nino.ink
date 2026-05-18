@@ -5,7 +5,7 @@ VAR loop = 0
 
 === Bar ===
 
-    It is a gentle night in one of the quiet neighbourhoods on the edge of town. The last light to still burn is that of the bar. Wasteful, you think, so many hours could be saved if they closed early. Yes, you must rid the town of this place where people come to <i>waste</i> time with their friends, time that they could be saving at the time-saving bank.
+    It is a gentle night in one of the quiet neighbourhoods on the edge of town. The last light to still burn is that of the bar. Wasteful, you think, so many hours could be saved if they closed early. Yes, you must rid the town of this place where people come to waste time with their friends, time that they could be saving at the time-saving bank.
     - (TopBar)
     * (EnterWhileOpen) [Enter now { loop == 1 : (+ 10 / + 35) }]
     No time to waste. The sooner you enter, the sooner people will start saving time.
@@ -134,7 +134,7 @@ VAR loop = 0
 = SendFriendsHome
 
     * [Friends do not bring value]
-        "And what have those <i> friends </i> of yours brought you? True friends would value your time, and leave on time."
+        "And what have those friends of yours brought you? True friends would value your time, and leave on time."
         "I cannot just tell them to leave." Nino tries desperately.
         - - (UselessFriends)
         * * [Yes, you can  { loop == 1 : (+ 0 / + 25) }]

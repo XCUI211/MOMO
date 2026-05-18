@@ -5,7 +5,7 @@ signal textbox_closed
 const OUTCOME_SCENE := "res://scenes/Outcome.tscn"
 
 const MOMO_HEALTH := 100
-const MOMO_MIN_DAMAGE := 10
+const MOMO_MIN_DAMAGE := 18
 const MOMO_MAX_DAMAGE := 40
 
 const PLAYER_MAX_HEALTH := 100
@@ -102,7 +102,15 @@ func greymen_turn():
 	$ActionsPanel.show()
 
 func momo_turn():
-	display_text("Momo launches at you fiercely!")
+	var momo_actions = [
+		"Momo looks at you with deep, piercing eyes. Her silence burns your stolen time!",
+		"Momo raises a glowing Hourlily! Its pure time scorches your cold existence.",
+		"Momo simply stands and listens. A wave of dread washes over you!",
+		"Her absolute patience shatters your rushed nerves. You feel your life slipping away!",
+		"The pure, unhurried time radiating from Momo violently rejects your gray presence!"
+	]
+	
+	display_text(momo_actions.pick_random())
 	await self.textbox_closed
 
 	if is_defending:
